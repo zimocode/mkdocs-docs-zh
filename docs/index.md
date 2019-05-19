@@ -11,7 +11,7 @@ MkDocs是一个**快速**、**简单**、**华丽**的静态网站生成器，�
 
 ### 在任何地方部署
 
-MkDocs生成完全静态的HTML网站，您可以将其部署到GitHub pages、Amzzon S3或你自己选择的其它[任意地方][deploy]。
+MkDocs生成完全静态的HTML网站，你可以将其部署到GitHub pages、Amzzon S3或你自己选择的其它[任意地方][deploy]。
 
 ###很棒的主题
 
@@ -23,7 +23,7 @@ MkDocs有一堆很好看的主题。 官方内置了两个主题：[mkdocs]和[r
 
 ###易于定制
 
-通过自定义主题，让您的项目文档以您希望的方式呈现。
+通过自定义主题，让你的项目文档以你希望的方式呈现。
 
 ---
 
@@ -31,9 +31,9 @@ MkDocs有一堆很好看的主题。 官方内置了两个主题：[mkdocs]和[r
 
 ### 使用包管理器安装
 
-如果您拥有并使用包管理器（例如[apt-get]，[dnf]，[homebrew]，[yum]，[chocolatey]等）来在您的系统上安装软件包，那么你可以尝试搜索“MkDocs”软件包，如果有最新版本，则可以使用包管理器来安装（有关详细信息，请查看相应系统的说明文档）。 就这样安装就完成了！ 跳到[入门](＃getting-started)。
+如果你拥有并使用包管理器（例如[apt-get]，[dnf]，[homebrew]，[yum]，[chocolatey]等）来在你的系统上安装软件包，那么你可以尝试搜索“MkDocs”软件包，如果有最新版本，则可以使用包管理器来安装（有关详细信息，请查看相应系统的说明文档）。 就这样安装就完成了！ 跳到[入门](＃getting-started)。
 
-如果您的包管理器中没有最新的“MkDocs”软件包，你仍然可以使用软件包管理器来安装“Python”和“pip”。 然后使用pip来[安装MkDocs](#instalming-mkdocs)。
+如果你的包管理器中没有最新的“MkDocs”软件包，你仍然可以使用软件包管理器来安装“Python”和“pip”。 然后使用pip来[安装MkDocs](#instalming-mkdocs)。
 
 [apt-get]: https://help.ubuntu.com/community/AptGet/Howto
 [homebrew]: https://brew.sh/
@@ -43,7 +43,7 @@ MkDocs有一堆很好看的主题。 官方内置了两个主题：[mkdocs]和[r
 
 ### 手动安装
 
-为了手动安装MkDocs，您需要在系统上安装[Python]，以及Python包管理器[pip]。你可以使用以下命令来检查是否已经安装了这些软件：
+为了手动安装MkDocs，你需要在系统上安装[Python]，以及Python包管理器[pip]。你可以使用以下命令来检查是否已经安装了这些软件：
 
 ```bash
 $ python --version
@@ -60,7 +60,7 @@ MkDocs支持Python2.7.9+、3.4、3.5、3.6、3.7和pypy。
 
 !!! Note
 
-    如果您在Windows上安装Python，请确保选中此框以在安装程序提供此选项时将Python添加到PATH（默认情况下通常是关闭）。
+    如果你在Windows上安装Python，请确保选中此框以在安装程序提供此选项时将Python添加到PATH（默认情况下通常是关闭）。
 
     ![Add Python to PATH](img/win-py-install.png)
 
@@ -68,7 +68,7 @@ MkDocs支持Python2.7.9+、3.4、3.5、3.6、3.7和pypy。
 
 #### 安装pip
 
-如果您使用的是最新版本的Python，则默认情况下很可能已经安装了Python包管理器[pip]。但是，您可能需要将pip升级到最新版本：
+如果你使用的是最新版本的Python，则默认情况下很可能已经安装了Python包管理器[pip]。但是，你可能需要将pip升级到最新版本：
 
 ```bash
 pip install --upgrade pip
@@ -96,7 +96,7 @@ mkdocs, version 0.15.3
 ```
 
 !!! Note
-    如果您希望为MkDocs安装联机帮助页，[click-man]工具可以为你生成并安装它们。 只需运行以下两个命令：
+    如果你希望为MkDocs安装联机帮助页，[click-man]工具可以为你生成并安装它们。 只需运行以下两个命令：
 
         pip install click-man
         click-man --target path/to/man/pages mkdocs
@@ -107,14 +107,14 @@ mkdocs, version 0.15.3
 [click-man文档]: https://github.com/click-contrib/click-man#automatic-man-page-installation-with-setuptools-and-pip
 
 !!! Note
-    如果您使用的是Windows，则上述某些命令可能无法实现开箱即用。
+    如果你使用的是Windows，则上述某些命令可能无法实现开箱即用。
 
     一个快速的解决方案可能是在每个Python命令前加上`python -m`，如下所示：
 
         python -m pip install mkdocs
         python -m mkdocs
 
-    对于更永久的解决方案，您可能需要编辑`PATH`环境变量以包含Python安装的`Scripts`目录。 最近的Python版本包含一个为您执行此操作的脚本。 切换到Python安装目录（例如`C:\Python34 \`），打开`Tools`，然后打开`Scripts`文件夹，双击运行`win_add2path.py`文件。 或者，您可以[下载][a2p]脚本并运行它（`python win_add2path.py`）。
+    对于更永久的解决方案，你可能需要编辑`PATH`环境变量以包含Python安装的`Scripts`目录。 最近的Python版本包含一个为你执行此操作的脚本。 切换到Python安装目录（例如`C:\Python34 \`），打开`Tools`，然后打开`Scripts`文件夹，双击运行`win_add2path.py`文件。 或者，你可以[下载][a2p]脚本并运行它（`python win_add2path.py`）。
 
 [a2p]: https://svn.python.org/projects/python/trunk/Tools/scripts/win_add2path.py
 
@@ -129,13 +129,13 @@ mkdocs new my-project
 cd my-project
 ```
 
-花一点时间来回顾一下为您创建的初始项目。
+花一点时间来回顾一下为你创建的初始项目。
 
 ![The initial MkDocs layout](img/initial-layout.png)
 
 有一个名为`mkdocs.yml`的配置文件，以及一个名为`docs`的文件夹，它将包含你的文档源文件。现在`docs`文件夹只包含一个名为`index.md`的文档页面。
 
-MkDocs附带一个内置的开发服务器，可以让您在处理文档时预览文档。 确保与`mkdocs.yml`配置文件位于同一目录中，然后通过运行`mkdocs serve`命令启动服务器：
+MkDocs附带一个内置的开发服务器，可以让你在处理文档时预览文档。 确保与`mkdocs.yml`配置文件位于同一目录中，然后通过运行`mkdocs serve`命令启动服务器：
 
 ```bash
 $ mkdocs serve
@@ -146,7 +146,7 @@ INFO    -  Cleaning site directory
 [I 160402 15:50:43 handlers:60] Start detecting changes
 ```
 
-在浏览器中打开`http://127.0.0.1:8000/`，您将看到显示的默认主页：
+在浏览器中打开`http://127.0.0.1:8000/`，你将看到显示的默认主页：
 
 ![The MkDocs live server](img/screenshot.png)
 
@@ -160,7 +160,7 @@ INFO    -  Cleaning site directory
 site_name: MkLorum
 ```
 
-您的浏览器应立即重新加载，您将看到新设置的站点名称已经生效。
+你的浏览器应立即重新加载，你将看到新设置的站点名称已经生效。
 
 ![The site_name setting](img/site-name.png)
 
@@ -185,7 +185,7 @@ nav:
 
 ![Screenshot](img/multipage.png)
 
-尝试菜单项并在页面之间来回导航。 然后单击`Search`。 将出现一个搜索对话框，允许您搜索任何页面上的任何文本。 请注意，搜索结果包括网站上每次出现的搜索字词，并直接链接到搜索字词所在页面的部分。您无需付出任何努力或配置即可获得所有这些！
+尝试菜单项并在页面之间来回导航。 然后单击`Search`。 将出现一个搜索对话框，允许你搜索任何页面上的任何文本。 请注意，搜索结果包括网站上每次出现的搜索字词，并直接链接到搜索字词所在页面的部分。你无需付出任何努力或配置即可获得所有这些！
 
 ![Screenshot](img/search.png)
 
@@ -201,7 +201,7 @@ nav:
 theme: readthedocs
 ```
 
-保存更改，您将看到改为使用了ReadTheDocs主题。
+保存更改，你将看到改为使用了ReadTheDocs主题。
 
 ![Screenshot](img/readthedocs.png)
 
@@ -227,15 +227,15 @@ about  fonts  index.html  license  search.html
 css    img    js          mkdocs   sitemap.xml
 ```
 
-请注意，您的源文档已输出为两个名为`index.html`和`about/index.html`的HTML文件。同时各种其他媒体文件也已被复制到`site`目录中作为文档主题的一部分。另外还有一个`sitemap.xml`文件和`mkdocs/search_index.json`。
+请注意，你的源文档已输出为两个名为`index.html`和`about/index.html`的HTML文件。同时各种其他媒体文件也已被复制到`site`目录中作为文档主题的一部分。另外还有一个`sitemap.xml`文件和`mkdocs/search_index.json`。
 
-如果你正在使用版本控制软件，例如`git`，您可能不希望将生成的文件包含到存储库中。只需要在`.gitignore`文件中添加一行`site/`即可。
+如果你正在使用版本控制软件，例如`git`，你可能不希望将生成的文件包含到存储库中。只需要在`.gitignore`文件中添加一行`site/`即可。
 
 ```bash
 echo "site/" >> .gitignore
 ```
 
-如果您正在使用其他版本控制工具，请你自行查阅相关文档，了解如何忽略特定目录。
+如果你正在使用其他版本控制工具，请你自行查阅相关文档，了解如何忽略特定目录。
 
 一段时间后，文件可能会从文档中删除，但它们仍将驻留在`site`目录中。 要删除那些陈旧的文件，只需在运行`mkdocs`命令时带上`--clean`参数即可。
 
@@ -259,7 +259,7 @@ mkdocs build --help
 
 ## 部署
 
-您刚刚生成的文档站点仅使用静态文件，因此你几乎可以在任何地方托管它。 [GitHub project pages]和[Amazon S3]是个很不错的托管地方，具体取决于你的需求。 将整个`site`目录的内容上传到您托管网站的地方，然后就完成了。 有关常见主机的具体说明，请参阅[部署文档][deploy]页面。
+你刚刚生成的文档站点仅使用静态文件，因此你几乎可以在任何地方托管它。 [GitHub project pages]和[Amazon S3]是个很不错的托管地方，具体取决于你的需求。 将整个`site`目录的内容上传到你托管网站的地方，然后就完成了。 有关常见主机的具体说明，请参阅[部署文档][deploy]页面。
 
 ## 获取帮助
 
