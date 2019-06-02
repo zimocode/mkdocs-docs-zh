@@ -1,47 +1,34 @@
-# Styling your docs
+# 设置文档样式
 
-How to style and theme your documentation.
+如何设置文档的样式和主题。
 
 ---
 
-MkDocs includes a couple [built-in themes] as well as various [third party
-themes], all of which can easily be customized with [extra CSS or
-JavaScript][docs_dir] or overridden from the theme's [custom_dir]. You can also
-create your own [custom theme] from the ground up for your documentation.
+MkDocs包括一些[内置主题]以及各种[第三方主题]，所有这些都可以使用[额外的CSS或JavaScript][docs_dir]轻松定制，或者覆盖主题的[custom_dir]。 您也可以为你的文档从头开始创建自己的[自定义主题]。
 
-To use a theme that is included in MkDocs, simply add this to your
-`mkdocs.yml` config file.
+要使用MkDocs中包含的主题，只需将其添加到您的`mkdocs.yml`配置文件中。
 
     theme: readthedocs
 
-Replace [`readthedocs`](#readthedocs) with any of the [built-in themes] listed below.
+使用下面的[内置主题]中列出的任一一种替换掉[`readthedocs`](#readthedocs)。
 
-To create a new custom theme see the [Custom Themes][custom theme] page, or to
-more heavily customize an existing theme, see
-the [Customizing a Theme][customize] section below.
+要创建新的自定义主题，请参阅[自定义主题][custom theme]页面，或者更多地自定义现有主题，请参阅下面的[自定义主题][customize]部分。
 
-## Built-in themes
+## 内置主题
 
 ### mkdocs
 
-The default theme, which was built as a custom [Bootstrap] theme, supports most
-every feature of MkDocs. It only officially supports two levels in the
-navigation (see #1107).
+MkDocs的默认主题，使用修改过的[Bootstrap]构建而成，支持MkDocs的大部分功能。官方只支持两级导航。参见 #1107）
 
 ![mkdocs](../img/mkdocs.png)
 
-In addition to the default [theme configuration options], the `mkdocs` theme
-supports the following options:
+除了默认的[主题配置选项]之外，`mkdocs`主题还支持以下选项：
 
-* __`highlightjs`__: Enables highlighting of source code in code blocks using
-  the [highlight.js] JavaScript library. Default: `True`.
+* __`highlightjs`__：JavaScript库在代码块中突出显示源代码。 默认值：`True`。
 
-* __`hljs_style`__: The highlight.js library provides 79 different [styles]
-  (color variations) for highlighting source code in code blocks. Set this to
-  the name of the desired style. Default: `github`.
+* __`hljs_style`__：highlight.js库提供79种不同的[样式]（颜色变化），用于突出显示代码块中的源代码。 将其设置为所需样式的名称。 默认值：`github`。
 
-* __`hljs_languages`__: By default, highlight.js only supports 23 common
-  languages. List additional languages here to include support for them.
+* __`hljs_languages`__：them.默认情况下，highlight.js仅支持23种常用语言。在此列出额外需要支持的语言。
 
         theme:
             name: mkdocs
@@ -50,7 +37,7 @@ supports the following options:
                 - yaml
                 - rust
 
-* __`shortcuts`__: Defines keyboard shortcut keys.
+* __`shortcuts`__：定义键盘快捷键。
 
         theme:
             name: mkdocs
@@ -60,37 +47,29 @@ supports the following options:
                 previous: 80 # p
                 search: 83   # s
 
-    All values much be numeric key codes. It is best to use keys which are
-    available on all keyboards. You may use <https://keycode.info/> to determine
-    the key code for a given key.
+    所有值都是数字键代码。 最好使用所有键盘上都有的键。 您可以使用<https://keycode.info/>来确定给定的键的代码。
 
-    * __`help`__: Display a help modal which lists the keyboard shortcuts.
-      Default: `191` (&quest;)
+    * __`help`__：显示一个列出键盘快捷键的帮助模式。默认：`191`（＆quest;）
 
-    * __`next`__: Navigate to the "next" page. Default: `78` (n)
+    * __`next`__：导航到“下一页”。 默认值：`78`（n）
 
-    * __`previous`__: Navigate to the "previous" page. Default: `80` (p)
+    * __`previous`__：导航到“上一页”。 默认值：`80`（p）
 
-    * __`search`__: Display the search modal. Default: `83` (s)
+    * __`search`__：显示搜索模式。 默认值：`83`（s）
 
 [styles]: https://highlightjs.org/static/demo/
 
 ### readthedocs
 
-A clone of the default theme used by the [Read the Docs] service, which offers
-the same restricted feature-set as its parent theme. Like its parent theme, only
-two levels of navigation are supported.
+[Read the Docs]服务使用的默认主题的克隆，它提供与其父主题相同的受限制功能集。 与其父主题一样，仅支持两个级别的导航。
 
 ![ReadTheDocs](../img/readthedocs.png)
 
-In addition to the default [theme configuration options], the `readthedocs`
-theme supports the following options:
+除了默认的[主题配置选项]之外，`readthedocs`主题还支持以下选项：
 
-* __`highlightjs`__: Enables highlighting of source code in code blocks using
-  the [highlight.js] JavaScript library. Default: `True`.
+* __`highlightjs`__：使用[highlight.js] JavaScript库在代码块中突出显示源代码。 默认值：`True`。
 
-* __`hljs_languages`__: By default, highlight.js only supports 23 common
-  languages. List additional languages here to include support for them.
+* __`hljs_languages`__：默认情况下，highlight.js仅支持23种常用语言。在此列出额外需要支持的语言。
 
         theme:
             name: readthedocs
@@ -99,50 +78,31 @@ theme supports the following options:
                 - yaml
                 - rust
 
-* __`include_homepage_in_sidebar`__: Lists the homepage in the sidebar menu. As
-  MkDocs requires that the homepage be listed in the `nav` configuration
-  option, this setting allows the homepage to be included or excluded from
-  the sidebar. Note that the site name/logo always links to the homepage.
-  Default: `True`.
+* __`include_homepage_in_sidebar`__：列出侧栏菜单中的主页。由于MkDocs要求在“nav”配置选项中列出主页，因此此设置允许在侧栏中包含或排除主页。请注意，站点名称/Logo始终链接到主页。默认：`True`。
 
-* __`prev_next_buttons_location`__: One of `bottom`, `top`, `both` , or `none`.
-  Displays the “Next” and “Previous” buttons accordingly. Default: `bottom`.
+* __`prev_next_buttons_location`__：`bottom`, `top`, `both` 和 `none`中的一个值。相应地显示“下一步”和“上一步”按钮。 默认值：`bottom`。
 
-* __`navigation_depth`__: The maximum depth of the navigation tree in the
-  sidebar. Default: `4`.
+* __`navigation_depth`__：侧栏中导航树的最大深度。 默认值：`4`。
 
-* __`collapse_navigation`__: Only include the page section headers in the
-  sidebar for the current page. Default: `True`.
+* __`collapse_navigation`__：仅包含当前页面侧栏中的页面部分标题。 默认值：`True`。
 
-* __`titles_only`__: Only include page titles in the sidebar, excluding all
-  section headers for all pages. Default: `False`.
+* __`titles_only`__：仅包含侧栏中的页面标题，不包括所有页面的所有节标题。 默认值：`False`。
 
-* __`sticky_navigation`__: If True, causes the sidebar to scroll with the main
-  page content as you scroll the page. Default: `True`.
+* __`sticky_navigation`__：如果为True，则在滚动页面时使侧边栏与主页面内容一起滚动。 默认值：`True`。
 
-### Third Party Themes
+### 第三方主题
 
-A list of third party themes can be found in the MkDocs [community wiki]. If you
-have created your own, please feel free to add it to the list.
+可以在MkDocs[community wiki]中找到第三方主题列表。 如果您已创建自己的，请随时将其添加到列表中。
 
-## Customizing a Theme
+## 自定义主题
 
-If you would like to make a few tweaks to an existing theme, there is no need to
-create your own theme from scratch. For minor tweaks which only require some CSS
-and/or JavaScript, you can use the [docs_dir]. However, for more complex
-customizations, including overriding templates, you will need to use the theme
-[custom_dir] setting.
+如果您想对现有主题进行一些调整，则无需从头开始创建自己的主题。对于只需要一些CSS和（或）JavaScript的小调整，您可以使用[docs_dir]。但是，对于更复杂的自定义（包括覆盖模板），您需要使用主题的[custom_dir]设置。
 
-### Using the docs_dir
+### 使用docs_dir
 
-The [extra_css] and [extra_javascript] configuration options can be used to
-make tweaks and customizations to existing themes. To use these, you simply
-need to include either CSS or JavaScript files within your [documentation
-directory].
+[extra_css]和[extra_javascript]配置选项可用于对现有主题进行调整和自定义。要使用它们，您只需要在[文档目录]中包含CSS或JavaScript文件。
 
-For example, to change the colour of the headers in your documentation, create
-a file called `extra.css` and place it next to the documentation Markdown. In
-that file add the following CSS.
+例如，要更改文档中标题的颜色，请创建一个名为`extra.css`的文件，并将其放在文档Markdown旁边。 在该文件中添加以下CSS。
 
 ```CSS
 h1 {
@@ -152,45 +112,27 @@ h1 {
 
 !!! note
 
-    If you are deploying your documentation with [ReadTheDocs]. You will need
-    to explicitly list the CSS and JavaScript files you want to include in
-    your config. To do this, add the following to your mkdocs.yml.
+    如果您使用[ReadTheDocs]部署文档。 您需要明确列出要包含在配置中的CSS和JavaScript文件。为此，请将以下内容添加到mkdocs.yml中。
 
         extra_css: [extra.css]
 
-After making these changes, they should be visible when you run
-`mkdocs serve` - if you already had this running, you should see that the CSS
-changes were automatically picked up and the documentation will be updated.
+在进行这些更改之后，当你运行`mkdocs serve`后将能看到效果。运行该命令后将会，CSS所做的改变将自动更新。
 
 !!! note
 
-    Any extra CSS or JavaScript files will be added to the generated HTML
-    document after the page content. If you desire to include a JavaScript
-    library, you may have better success including the library by using the
-    theme [custom_dir].
+    Any extra CSS or JavaScript files will be added to the generated HTML document after the page content. If you desire to include a JavaScript library, you may have better success including the library by using the theme [custom_dir].
+    在页面内容之后，任何额外的CSS或JavaScript文件都将添加到生成的HTML文档中。如果您希望包含JavaScript库，则可以通过使用主题的[custom_dir]获得更好支持。
 
-### Using the theme custom_dir
+### 使用主题的custom_dir
 
-The theme.[custom_dir] configuration option can be used to point to a directory
-of files which override the files in a parent theme. The parent theme would be
-the theme defined in the theme.[name] configuration option. Any file in the
-`custom_dir` with the same name as a file in the parent theme will replace the
-file of the same name in the parent theme. Any additional files in the
-`custom_dir` will be added to the parent theme. The contents of the `custom_dir`
-should mirror the directory structure of the parent theme. You may include
-templates, JavaScript files, CSS files, images, fonts, or any other media
-included in a theme.
+主题的[custom_dir]配置选项可用于指向覆盖父主题目录中的文件。父主题将是主题中[name]配置选项定义的主题。 `custom_dir`中与父主题中的文件同名的任何文件都将替换父主题中同名文件。`custom_dir`中的任何其他文件都将添加到父主题中。 `custom_dir`的内容应该镜像父主题的目录结构。您可以包含模板，JavaScript文件，CSS文件，图像，字体或主题中包含的任何其他媒体文件。
 
 !!! Note
 
-    For this to work, the theme `name` setting must be set to a known installed theme.
-    If the `name` setting is instead set to `null` (or not defined), then there
-    is no theme to override and the contents of the `custom_dir` must be a
-    complete, standalone theme. See [Custom Themes][custom theme] for more
-    information.
+    为此，主题的`name`设置必须设置为已知的已安装主题。 如果`name`设置被设置为`null`（或未定义[custom theme]。
 
-For example, the [mkdocs] theme ([browse source]), contains the following
-directory structure (in part):
+For example, the [mkdocs] theme ([browse source]), contains the following directory structure (in part):
+例如，[mkdocs]主题([查看源代码])包含以下目录结构（部分）：
 
 ```nohighlight
 - css\
@@ -207,14 +149,13 @@ directory structure (in part):
 - toc.html
 ```
 
-To override any of the files contained in that theme, create a new directory
-next to your `docs_dir`:
+要覆盖该主题中包含的任何文件，请在`docs_dir`旁边创建一个新目录：
 
 ```bash
 mkdir custom_theme
 ```
 
-And then point your `mkdocs.yml` configuration file at the new directory:
+然后将您的`mkdocs.yml`配置文件指向新目录：
 
 ```yaml
 theme:
@@ -222,17 +163,13 @@ theme:
     custom_dir: custom_theme/
 ```
 
-To override the 404 error page ("file not found"), add a new template file named
-`404.html` to the `custom_theme` directory. For information on what can be
-included in a template, review the documentation for building a [custom theme].
+要覆盖404错误页面（“找不到文件”），请将名为`404.html`的新模板文件添加到`custom_theme`目录中。 有关可以包含在模板中的内容的信息，请查看用于构建[自定义主题]的文档。
 
-To override the favicon, you can add a new icon file at
-`custom_theme/img/favicon.ico`.
+要覆盖favicon，您可以在`ustom_theme/img/favicon.ico`中添加一个新的图标文件。
 
-To include a JavaScript library, copy the library to the `custom_theme/js/`
-directory.
+要包含JavaScript库，请将库复制到`custom_theme/js/`目录。
 
-Your directory structure should now look like this:
+您的目录结构现在应如下所示：
 
 ```nohighlight
 - docs/
@@ -248,20 +185,11 @@ Your directory structure should now look like this:
 
 !!! Note
 
-    Any files included in the parent theme (defined in `name`) but not included
-    in the `custom_dir` will still be utilized. The `custom_dir` will only
-    override/replace files in the parent theme. If you want to remove files, or
-    build a theme from scratch, then you should review the documentation for
-    building a [custom theme].
+    父主题中包含的（在`name`中定义）但不包括在`custom_dir`中的任何文件将继续使用。`custom_dir`只会覆盖/替换父主题中的文件。 如果要删除文件或从头开始构建主题，则应查看用于构建[自定义主题]的文档。
 
-#### Overriding Template Blocks
+#### 覆盖模板块
 
-The built-in themes implement many of their parts inside template blocks which
-can be individually overridden in the `main.html` template. Simply create a
-`main.html` template file in your `custom_dir` and define replacement blocks
-within that file. Just make sure that the `main.html` extends `base.html`. For
-example, to alter the title of the MkDocs theme, your replacement `main.html`
-template would contain the following:
+内置主题在模板块中实现了许多部分，可以在`main.html`模板中单独覆盖。 只需在`custom_dir`中创建一个`main.html`模板文件，并在该文件中定义替换块。 只要确保`main.html`扩展`base.html`。 例如，要更改MkDocs主题的标题，替换的`main.html`模板将包含以下内容：
 
 ```django
 {% extends "base.html" %}
@@ -271,42 +199,30 @@ template would contain the following:
 {% endblock %}
 ```
 
-In the above example, the `htmltitle` block defined in your custom `main.html` file
-will be used in place of the default `htmltitle` block defined in the parent theme.
-You may re-define as many blocks as you desire, as long as those blocks are
-defined in the parent. For example, you could replace the Google Analytics
-script with one for a different service or replace the search feature with your
-own. You will need to consult the parent theme you are using to determine what
-blocks are available to override. The MkDocs and ReadTheDocs themes provide the
-following blocks:
+在上面的例子中，将使用自定义`main.html`文件中定义的`htmltitle`块代替父主题中定义的默认`htmltitle`块。 您可以根据需要重新定义任意数量的块，只要这些块在父级中定义即可。 例如，您可以将Google Analytics脚本替换为不同服务的脚本，或者将搜索功能替换为您自己的搜索功能。 您需要查询正在使用的父主题，以确定可以覆盖的块。 MkDocs和ReadTheDocs主题提供以下块：
 
-* `site_meta`: Contains meta tags in the document head.
-* `htmltitle`: Contains the page title in the document head.
-* `styles`: Contains the link tags for stylesheets.
-* `libs`: Contains the JavaScript libraries (jQuery, etc) included in the page header.
-* `scripts`: Contains JavaScript scripts which should execute after a page loads.
-* `analytics`: Contains the analytics script.
-* `extrahead`: An empty block in the `<head>` to insert custom tags/scripts/etc.
-* `site_name`: Contains the site name in the navigation bar.
-* `site_nav`: Contains the site navigation in the navigation bar.
-* `search_box`: Contains the search box in the navigation bar.
-* `next_prev`: Contains the next and previous buttons in the navigation bar.
-* `repo`: Contains the repository link in the navigation bar.
-* `content`: Contains the page content and table of contents for the page.
-* `footer`: Contains the page footer.
+* `site_meta`：包含文档头中的元标记。
+* `htmltitle`：包含文档头中的页面标题。
+* `styles`：包含样式表的链接标记。
+* `libs`：包含页眉中包含的JavaScript库（jQuery等）。
+* `scripts`：包含应在页面加载后执行的JavaScript脚本。
+* `analytics`：包含分析脚本。
+* `extrahead`：`<head>`中的空块，用于插入自定义标记/脚本/等。
+* `site_name`：包含导航栏中的站点名称。
+* `site_nav`：包含导航栏中的站点导航。
+* `search_box`：包含导航栏中的搜索框。
+* `next_prev`：包含导航栏中的下一个和上一个按钮。
+* `repo`：包含导航栏中的GitHub存储库链接。
+* `content`：包含页面的页面内容和目录。
+* `footer`：包含页脚。
 
-You may need to view the source template files to ensure your modifications will
-work with the structure of the site. See [Template Variables] for a list of
-variables you can use within your custom blocks. For a more complete
-explanation of blocks, consult the [Jinja documentation].
+您可能需要查看源模板文件，以确保您的修改将适用于站点的结构。 有关可在自定义块中使用的变量列表，请参见[模板变量]。 有关块的更完整说明，请参阅[Jinja文档]。
 
-#### Combining the custom_dir and Template Blocks
+#### 组合custom_dir和模板块
 
-Adding a JavaScript library to the `custom_dir` will make it available, but
-won't include it in the pages generated by MkDocs. Therefore, a link needs to
-be added to the library from the HTML.
+将JavaScript库添加到`custom_dir`将使其可用，但不会将其包含在MkDocs生成的页面中。因此，需要从HTML添加链接到库。
 
-Starting the with directory structure above (truncated):
+启动上面的目录结构（截断）：
 
 ```nohighlight
 - docs/
@@ -316,12 +232,7 @@ Starting the with directory structure above (truncated):
 - config.yml
 ```
 
-A link to the `custom_theme/js/somelib.js` file needs to be added to the
-template. As `somelib.js` is a JavaScript library, it would logically go in the
-`libs` block. However, a new `libs` block that only includes the new script will
-replace the block defined in the parent template and any links to libraries in
-the parent template will be removed. To avoid breaking the template, a
-[super block] can be used with a call to `super` from within the block:
+一个指向`custom_theme/js/somelib.js`文件的链接需要添加到模板中。 由于`somelib.js`是一个JavaScript库，它在逻辑上会进入`libs`块。 但是，仅包含新脚本的新`libs`块将替换父模板中定义的块，并且将删除父模板中库的任何链接。 为了避免破坏模板，可以使用[super block]从块中调用`super`：
 
 ```django
 {% extends "base.html" %}
@@ -332,20 +243,17 @@ the parent template will be removed. To avoid breaking the template, a
 {% endblock %}
 ```
 
-Note that the [base_url] template variable was used to ensure that the link is
-always relative to the current page.
+请注意，[base_url]模板变量用于确保链接始终相对于当前页面。
 
-Now the generated pages will include links to the template provided libraries as
-well as the library included in the `custom_dir`. The same would be required for
-any additional CSS files included in the `custom_dir`.
+现在生成的页面将包含指向模板提供的库的链接以及`custom_dir`中包含的库。`custom_dir`中包含的任何其他CSS文件也是如此。
 
 [browse source]: https://github.com/mkdocs/mkdocs/tree/master/mkdocs/themes/mkdocs
-[built-in themes]: #built-in-themes
+[内置主题]: #built-in-themes
 [Bootstrap]: https://getbootstrap.com/
 [theme configuration options]: ./configuration.md#theme
 [Read the Docs]: https://readthedocs.org/
 [community wiki]: https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes
-[custom theme]: ./custom-themes.md
+[自定义主题]: ./custom-themes.md
 [customize]: #customizing-a-theme
 [docs_dir]: #using-the-docs_dir
 [documentation directory]: ./configuration.md#docs_dir

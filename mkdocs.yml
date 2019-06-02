@@ -17,7 +17,7 @@ nav:
     - 主页: index.md
     - 用户指南:
         - 编写你的文档: user-guide/writing-your-docs.md
-        - Styling Your Docs: user-guide/styling-your-docs.md
+        - 设置文档样式: user-guide/styling-your-docs.md
         - Configuration: user-guide/configuration.md
         - Deploying Your Docs: user-guide/deploying-your-docs.md
         - Custom Themes: user-guide/custom-themes.md
