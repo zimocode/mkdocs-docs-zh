@@ -1,72 +1,57 @@
-# Configuration
+# 配置文件
 
-Guide to all available configuration settings.
+所有可用配置选项的指南。
 
 ---
 
-## Introduction
+## 简介
 
-Project settings are always configured by using a YAML configuration file in the
-project directory named `mkdocs.yml`.
+始终使用名为`mkdocs.yml`的位于项目目录中的YAML文件来进行设置。
 
-As a minimum this configuration file must contain the `site_name` setting. All
-other settings are optional.
+此配置文件必须包含`site_name`设置。 所有其他设置都是可选项。
 
-## Project information
+## 项目信息
 
 ### site_name
 
-This is a **required setting**, and should be a string that is used as the main
-title for the project documentation. For example:
+这是一个**必需的设置**，应该是一个字符串，用作项目文档的主标题。 例如：
 
 ```yaml
 site_name: Marshmallow Generator
 ```
 
-When rendering the theme this setting will be passed as the `site_name` context
-variable.
+渲染主题时，此设置将作为`site_name`上下文变量传递。
 
 ### site_url
 
-Set the canonical URL of the site. This will add a link tag with the canonical
-URL to the generated HTML header.
+设置站点的规范URL。 这将添加带有规范URL的链接标记到生成的HTML标头。
 
-**default**: `null`
+**默认值**： `null`
 
 ### repo_url
 
-When set, provides a link to your repository (GitHub, Bitbucket, GitLab, ...)
-on each page.
+置后，在每个页面上提供指向您的存储库（GitHub，Bitbucket，GitLab，...）的链接。
 
 ```yaml
 repo_url: https://github.com/example/repository/
 ```
 
-**default**: `null`
+**默认值**： `null`
 
 ### repo_name
 
-When set, provides the name for the link to your repository on each page.
+设置后，在每个页面上提供指向存储库的链接的名称。
 
-**default**: `'GitHub'`, `'Bitbucket'` or `'GitLab'` if the `repo_url` matches
-those domains, otherwise the hostname from the `repo_url`.
+**默认值**： `'GitHub'`, `'Bitbucket'` or `'GitLab'`， 如果`repo_url`不能匹配这些域名，则使用来自`repo_url`的域名。
 
 ### edit_uri
 
-Path from the base `repo_url` to the docs directory when directly viewing a
-page, accounting for specifics of the repository host (e.g. GitHub, Bitbucket,
-etc), the branch, and the docs directory itself. MkDocs concatenates `repo_url`
-and `edit_uri`, and appends the input path of the page.
+Path from the base `repo_url` to the docs directory when directly viewing a page, accounting for specifics of the repository host (e.g. GitHub, Bitbucket, etc), the branch, and the docs directory itself. MkDocs concatenates `repo_url` and `edit_uri`, and appends the input path of the page.
+直接查看页面时从基础`repo_url`到docs目录的路径，考虑存储库主机（例如GitHub，Bitbucket等），分支和docs目录本身的细节。 MkDocs连接`repo_url`和`edit_uri`，并附加页面的输入路径。
 
-When set, and if your theme supports it, provides a link directly to the page in
-your source repository. This makes it easier to find and edit the source for the
-page. If `repo_url` is not set, this option is ignored. On some themes, setting
-this option may cause an edit link to be used in place of a repository link.
-Other themes may show both links.
+设置后，如果您的主题支持它，则直接提供源存储库中页面的链接。 这样可以更轻松地查找和编辑页面的源。 如果未设置`repo_url`，则忽略此选项。 在某些主题上，设置此选项可能会导致使用编辑链接代替存储库链接。 其他主题可能会显示这两个链接。
 
-The `edit_uri` supports query ('?') and fragment ('#') characters. For
-repository hosts that use a query or a fragment to access the files, the
-`edit_uri` might be set as follows. (Note the `?` and `#` in the URI...)
+`edit_uri`支持查询（'？'）和片段（'＃'）字符。 对于使用查询或片段访问文件的存储库主机，可以按如下方式设置`edit_uri`。 （注意URI中的`？`和`#` ...）
 
 ```yaml
 # Query string example
@@ -78,95 +63,72 @@ edit_uri: '?query=root/path/docs/'
 edit_uri: '#root/path/docs/'
 ```
 
-For other repository hosts, simply specify the relative path to the docs
-directory.
+对于其他存储库主机，只需指定docs目录的相对路径即可。
 
 ```yaml
 # Query string example
 edit_uri: root/path/docs/
 ```
 
-!!! note
-    On a few known hosts (specifically GitHub, Bitbucket and GitLab), the
-    `edit_uri` is derived from the 'repo_url' and does not need to be set
-    manually. Simply defining a `repo_url` will automatically populate the
-    `edit_uri` configs setting.
+!!! note "注意："
+    在一些已知的主机（特别是GitHub，Bitbucket和GitLab）上，`edit_uri`是从'repo_url'派生出来的，不需要手动设置。 只需定义一个`repo_url`就会自动填充`edit_uri`配置设置。
 
-    For example, for a GitHub- or GitLab-hosted repository, the `edit_uri`
-    would be automatically set as `edit/master/docs/` (Note the `edit` path
-    and `master` branch).
+    例如，对于GitHub或GitLab托管的存储库，`edit_uri`将自动设置为`edit/master/docs/`（注意`edit`路径和`master`分支）。
 
-    For a Bitbucket-hosted repository, the equivalent `edit_uri` would be
-    automatically set as `src/default/docs/` (note the `src` path and `default`
-    branch).
+    对于Bitbucket托管的存储库，等效的`edit_uri`将自动设置为`src/default/docs/`（注意`src`路径和`default`分支）。
 
-    To use a different URI than the default (for example a different branch),
-    simply set the `edit_uri` to your desired string. If you do not want any
-    "edit URL link" displayed on your pages, then set `edit_uri` to an empty
-    string to disable the automatic setting.
+    要使用与默认值不同的URI（例如不同的分支），只需将`edit_uri`设置为所需的字符串即可。如果您不希望页面上显示任何“编辑URL链接”，请将`edit_uri`设置为空字符串以禁用自动设置。
 
-!!! warning
-    On GitHub and GitLab, the default "edit" path (`edit/master/docs/`) opens
-    the page in the online editor. This functionality requires that the user
-    have and be logged in to a GitHub/GitLab account. Otherwise, the user will
-    be redirected to a login/signup page. Alternatively, use the "blob" path
-    (`blob/master/docs/`) to open a read-only view, which supports anonymous
-    access.
+!!! warning "警告："
+    在GitHub和GitLab上，默认的“编辑”路径（`edit/master/docs/`）在在线编辑器中打开页面。此功能要求用户拥有并已登录GitHub/GitLab帐户。 否则，用户将被重定向到登录/注册页面。 或者，使用“blob”路径（`blob/master/docs/`）打开只读视图，该视图支持匿名访问。
 
-**default**: `edit/master/docs/` for GitHub and GitLab repos or
-`src/default/docs/` for a Bitbucket repo, if `repo_url` matches those domains,
-otherwise `null`
+**默认值**：`edit/master/docs/`用于GitHub和GitLab存储库，`src/default/docs/`用于Bitbucket存储库，如果`repo_url`匹配那些域，否则为`null`
 
 ### site_description
 
-Set the site description. This will add a meta tag to the generated HTML header.
+设置站点描述。 这将为生成的HTML标头添加元标记。
 
-**default**: `null`
+**默认值**： `null`
 
 ### site_author
 
-Set the name of the author. This will add a meta tag to the generated HTML
-header.
+设置作者的姓名。 这将为生成的HTML标头添加元标记。
 
-**default**: `null`
+**默认值**： `null`
 
 ### copyright
 
-Set the copyright information to be included in the documentation by the theme.
+设置版权信息以包含在主题的文档中。
 
-**default**: `null`
+**默认值**： `null`
 
 ### google_analytics
 
-Set the Google analytics tracking configuration.
+设置Google Analytics跟踪配置。
 
 ```yaml
 google_analytics: ['UA-36723568-3', 'mkdocs.org']
 ```
 
-**default**: `null`
+**默认值**： `null`
 
 ### remote_branch
 
-Set the remote branch to commit to when using `gh-deploy` to deploy to Github
-Pages. This option can be overridden by a command line option in `gh-deploy`.
+当使用`gh-deploy`来部署到Github Pages时，设置欲远程提交到的分支。可以通过`gh-deploy`中的命令行选项覆盖此选项。
 
-**default**: `gh-pages`
+**默认值**： `gh-pages`
 
 ### remote_name
 
-Set the remote name to push to when using `gh-deploy` to deploy to Github Pages.
-This option can be overridden by a command line option in `gh-deploy`.
+当使用`gh-deploy`部署到Github Pages时，设置要推送到的远程名称。 可以通过`gh-deploy`中的命令行选项覆盖此选项。
 
-**default**: `origin`
+**默认值**： `origin`
 
-## Documentation layout
+## 文档布局
 
 ### nav
 
-This setting is used to determine the format and layout of the global navigation
-for the site. For example, the following would create "Introduction", "User
-Guide" and "About" navigation items.
+此设置用于确定站点的全局导航的格式和布局。 例如，以下内容将创建“Introduction”，“User Guide”和“About”导航项。
 
 ```yaml
 nav:
@@ -175,14 +137,9 @@ nav:
     - 'About': 'about.md'
 ```
 
-All paths must be relative to the `mkdocs.yml` configuration file. See the
-section on [configuring pages and navigation] for a more detailed breakdown,
-including how to create sub-sections.
+所有路径必须相对于`mkdocs.yml`配置文件。 有关更详细的细分，请参阅[配置页面和导航]部分，包括如何创建子导航。
 
-Navigation items may also include links to external sites. While titles are
-optional for internal links, they are required for external links. An external
-link may be a full URL or a relative URL. Any path which is not found in the
-files is assumed to be an external link.
+导航项目还可能包括指向外部站点的链接。 虽然标题对于内部链接是可选的，但外部链接需要它们。 外部链接可以是完整URL或相对URL。 假定在文件中找不到的任何路径都是外部链接。
 
 ```yaml
 nav:
@@ -191,12 +148,9 @@ nav:
     - Bug Tracker: https://example.com/
 ```
 
-In the above example, the first two items point to local files while the third
-points to an external site.
+在上面的示例中，前两个项指向本地文件，而第三个指向外部站点。
 
-However, sometimes the MkDocs site is hosted in a subdirectory of a project's
-site and you may want to link to other parts of the same site without including
-the full domain. In that case, you may use and appropriate relative URL.
+但是，有时MkDocs站点托管在项目站点的子目录中，您可能希望链接到同一站点的其他部分而不包括完整域。 在这种情况下，您可以使用和适当的相对URL。
 
 ```yaml
 site_url: https://example.com/foo/
@@ -207,29 +161,19 @@ nav:
     - Bug Tracker: /bugs/
 ```
 
-In the above example, two different styles of external links are used. First
-note that the `site_url` indicates that the MkDocs site is hosted in the `/foo/`
-subdirectory of the domain. Therefore, the `Home` navigation item is a relative
-link which steps up one level to the server root and effectively points to
-`https://example.com/`. The `Bug Tracker` item uses an absolute path from the
-server root and effectively points to `https://example.com/bugs/`. Of course, the
-`User Guide` points to a local MkDocs page.
+在上面的示例中，使用了两种不同风格的外部链接。 首先请注意，`site_url`表示MkDocs站点托管在域的`/foo/`子目录中。 因此，“Home”导航项是一个相对链接，它将一个级别提升到服务器根目录并有效地指向“https:// example.com/”。 “Bug Tracker”项使用来自服务器根目录的绝对路径，并有效地指向“https://example.com/bugs/”。 当然，“User Guide”指向本地MkDocs页面。
 
-**default**: By default `nav` will contain an alphanumerically sorted, nested
-list of all the Markdown files found within the `docs_dir` and its
-sub-directories. If none are found it will be `[]` (an empty list).
+**默认值**：默认情况下，`nav`将包含在`docs_dir`及其子目录中找到的所有Markdown文件的字母数字排序的嵌套列表。如果没有找到它将是`[]`（空列表）。
 
-## Build directories
+## 构建目录
 
 ### theme
 
-Sets the theme and theme specific configuration of your documentation site.
-May be either a string or a set of key/value pairs.
+设置文档站点的主题和主题特定配置。 可以是字符串或一组键/值对。
 
-If a string, it must be the string name of a known installed theme. For a list
-of available themes visit [styling your docs].
+如果是字符串，则必须是已知安装主题的字符串名称。 有关可用主题的列表，请访问[样式化您的文档]。
 
-An example set of key/value pairs might look something like this:
+一组示例键/值对可能如下所示：
 
 ```yaml
 theme:
@@ -240,75 +184,54 @@ theme:
     include_sidebar: false
 ```
 
-If a set of key/value pairs, the following nested keys can be defined:
+如果是一组键/值对，则可以定义以下嵌套键：
 
 !!! block ""
 
     #### name:
 
-    The string name of a known installed theme. For a list of available themes
-    visit [styling your docs].
+    已知安装主题的字符串名称。 有关可用主题的列表，请访问[样式化您的文档]。
 
     #### custom_dir:
 
-    A directory containing a custom theme. This can either be a relative
-    directory, in which case it is resolved relative to the directory containing
-    your configuration file, or it can be an absolute directory path from the
-    root of your local file system.
+    包含自定义主题的目录。 这可以是相对目录，在这种情况下，它相对于包含配置文件的目录进行解析，或者它可以是来自本地文件系统根目录的绝对目录路径。
 
-    See [styling your docs][theme_dir] for details if you would like to tweak an
-    existing theme.
+    如果您想要调整现有主题，请参阅[样式化您的文档][theme_dir]了解详细信息。
 
-    See [custom themes] if you would like to build your own theme from the
-    ground up.
+    如果您想从头开始构建自己的主题，请参阅[自定义主题]。
 
     #### static_templates:
 
-    A list of templates to render as static pages. The templates must be located
-    in either the theme's template directory or in the `custom_dir` defined in
-    the theme configuration.
+    要呈现为静态页面的模板列表。 模板必须位于主题的模板目录中或主题配置中定义的`custom_dir`中。
 
-    #### (theme specific keywords)
+    #### 主题特定关键字
 
-    Any additional keywords supported by the theme can also be defined. See the
-    documentation for the theme you are using for details.
+    还可以定义主题支持的任何其他关键字。 有关详细信息，请参阅您正在使用的主题的文档。
 
-**default**: `'mkdocs'`
+**默认值**： `'mkdocs'`
 
 ### docs_dir
 
-The directory containing the documentation source markdown files. This can
-either be a relative directory, in which case it is resolved relative to the
-directory containing your configuration file, or it can be an absolute directory
-path from the root of your local file system.
+源文档markdown文件的目录。 这可以是相对目录，在这种情况下，它相对于包含配置文件的目录进行解析，或者它可以是来自本地文件系统根目录的绝对目录路径。
 
-**default**: `'docs'`
+**默认值**： `'docs'`
 
 ### site_dir
 
-The directory where the output HTML and other files are created. This can either
-be a relative directory, in which case it is resolved relative to the directory
-containing your configuration file, or it can be an absolute directory path from
-the root of your local file system.
+为输出HTML和其他文件而创建的目录。 这可以是相对目录，在这种情况下，它相对于包含配置文件的目录进行解析，或者它可以是来自本地文件系统根目录的绝对目录路径。
 
-**default**: `'site'`
+**默认值**： `'site'`
 
-!!! note "Note:"
-    If you are using source code control you will normally want to ensure that
-    your *build output* files are not committed into the repository, and only
-    keep the *source* files under version control. For example, if using `git`
-    you might add the following line to your `.gitignore` file:
+!!! note "注意："
+    如果您使用的是源代码控制，通常需要确保*输出*文件未提交到存储库中，并且只保留*源文件*在版本控制下。 例如，如果使用`git`，您可以将以下行添加到`.gitignore`文件中：
 
         site/
 
-    If you're using another source code control tool, you'll want to check its
-    documentation on how to ignore specific directories.
+    如果您正在使用其他源代码控制工具，则需要查看有关如何忽略特定目录的文档。
 
 ### extra_css
 
-Set a list of CSS files in your `docs_dir` to be included by the theme. For
-example, the following example will include the extra.css file within the
-css subdirectory in your [docs_dir](#docs_dir).
+设置主题中包含到`docs_dir`中的CSS文件列表。 例如，以下示例将在[docs_dir]（＃docs_dir）的css子目录中包含extra.css文件。
 
 ```yaml
 extra_css:
@@ -316,107 +239,83 @@ extra_css:
     - css/second_extra.css
 ```
 
-**default**: `[]` (an empty list).
+**默认值**： `[]` (an empty list).
 
 ### extra_javascript
 
-Set a list of JavaScript files in your `docs_dir` to be included by the theme.
-See the example in [extra_css] for usage.
+设置要包含到主题中的`docs_dir`中的JavaScript文件列表。请参阅[extra_css]中的示例以了解用法。
 
-**default**: `[]` (an empty list).
+**默认值**： `[]` (an empty list).
 
 ### extra_templates
 
-Set a list of templates in your `docs_dir` to be built by MkDocs. To see more
-about writing templates for MkDocs read the documentation about [custom themes]
-and specifically the section about the [variables that are available] to
-templates. See the example in [extra_css] for usage.
+设置要由MkDocs构建的`docs_dir`中的模板列表。 要了解有关为MkDocs编写模板的更多信息，请阅读有关[自定义主题]的文档，特别是有关模板的[可用变量]的部分。 有关用法，请参阅[extra_css]中的示例。
 
-**default**: `[]` (an empty list).
+**默认值**： `[]` (an empty list).
 
 ### extra
 
-A set of key value pairs, where the values can be any valid YAML construct, that
-will be passed to the template. This allows for great flexibility when creating
-custom themes.
+一组键值对，其中值可以是任何有效的YAML构造，将传递给模板。 这在创建自定义主题时具有很大的灵活性。
 
-For example, if you are using a theme that supports displaying the project
-version, you can pass it to the theme like this:
+例如，如果您使用的主题支持显示项目版本，则可以将其传递给主题，如下所示：
 
 ```yaml
 extra:
     version: 1.0
 ```
 
-**default**: By default `extra` will be an empty key value mapping.
+**默认值**： 默认情况下，“extra”将是一个空键值映射。
 
-## Preview controls
+## 预览控制
 
 ### use_directory_urls
 
-This setting controls the style used for linking to pages within the
-documentation.
+此设置控制用于链接的样式。
 
-The following table demonstrates how the URLs used on the site differ when
-setting `use_directory_urls` to `true` or `false`.
+下表演示了将“use_directory_urls”设置为“true”或“false”时网站上显示的URL的不同之处。
 
-Source file      | use_directory_urls: true  | use_directory_urls: false
+源文件            | use_directory_urls: true  | use_directory_urls: false
 ---------------- | ------------------------- | -------------------------
 index.md         | /                         | /index.html
 api-guide.md     | /api-guide/               | /api-guide.html
 about/license.md | /about/license/           | /about/license.html
 
-The default style of `use_directory_urls: true` creates more user friendly URLs,
-and is usually what you'll want to use.
+`use_directory_urls：true`的默认样式创建了更多用户友好的URL，通常是您想要使用的。
 
-The alternate style can occasionally be useful if you want your documentation to
-remain properly linked when opening pages directly from the file system, because
-it creates links that point directly to the target *file* rather than the target
-*directory*.
+如果您希望在直接从文件系统打开页面时保持文档正确链接，则备用样式有时会很有用，因为它会创建直接指向目标*文件*而非目标*目录*的链接。
 
-**default**: `true`
+**默认值**： `true`
 
 ### strict
 
-Determines how warnings are handled. Set to `true` to halt processing when a
-warning is raised. Set to `false` to print a warning and continue processing.
+确定警告的处理方式。 设置为“true”以在发出警告时停止处理。 设置为“false”以打印警告并继续处理。
 
-**default**: `false`
+**默认值**： `false`
 
 ### dev_addr
 
-Determines the address used when running `mkdocs serve`. Must be of the format
-`IP:PORT`.
+确定运行`mkdocs serve`时使用的地址。 必须是“IP:PORT”格式。
 
-Allows a custom default to be set without the need to pass it through the
-`--dev-addr` option every time the `mkdocs serve` command is called.
+允许设置自定义默认值，而无需在每次调用`mkdocs serve`命令时通过`--dev-addr`选项传递它。
 
-**default**: `'127.0.0.1:8000'`
+**默认值**： `'127.0.0.1:8000'`
 
-## Formatting options
+## 格式化选项
 
 ### markdown_extensions
 
-MkDocs uses the [Python Markdown][pymkd] library to translate Markdown files
-into HTML. Python Markdown supports a variety of [extensions][pymdk-extensions]
-that customize how pages are formatted. This setting lets you enable a list of
-extensions beyond the ones that MkDocs uses by default (`meta`, `toc`, `tables`,
-and `fenced_code`).
+MkDocs使用[Python Markdown][pymkd]库将Markdown文件翻译成HTML。 Python Markdown支持各种[扩展][pymdk-extensions]，可以自定义页面的格式。 此设置允许您启用超出MkDocs默认使用的扩展名列表（`meta`，`toc`，`tables`和`fenced_code`）。
 
-For example, to enable the [SmartyPants typography extension][smarty], use:
+例如，要启用[SmartyPants排版扩展][smarty]，请使用：
 
 ```yaml
 markdown_extensions:
     - smarty
 ```
 
-Some extensions provide configuration options of their own. If you would like to
-set any configuration options, then you can nest a key/value mapping
-(`option_name: option value`) of any options that a given extension supports.
-See the documentation for the extension you are using to determine what options
-they support.
+某些扩展提供了自己的配置选项。 如果要设置任何配置选项，则可以嵌套给定扩展支持的任何选项的键/值映射（`option_name:option value`）。请参阅所用扩展的文档以确定它们所提供的扩展选项。
 
-For example, to enable permalinks in the (included) `toc` extension, use:
+例如，要在（内置的）`toc`扩展中启用永久链接，请使用：
 
 ```yaml
 markdown_extensions:
@@ -424,10 +323,7 @@ markdown_extensions:
         permalink: True
 ```
 
-Note that a colon (`:`) must follow the extension name (`toc`) and then on a new
-line the option name and value must be indented and separated by a colon. If you
-would like to define multiple options for a single extension, each option must be
-defined on a separate line:
+请注意冒号（`：`）必须跟随扩展名（`toc`），然后在新起的一行上，选项名称和值必须缩进并用冒号分隔。如果要为单个扩展定义多个选项，则必须在单独的一行上分别定义每个选项：
 
 ```yaml
 markdown_extensions:
@@ -436,9 +332,7 @@ markdown_extensions:
         separator: "_"
 ```
 
-Add an additional item to the list for each extension. If you have no
-configuration options to set for a specific extension, then simply omit options
-for that extension:
+为每个扩展名添加一个附加项目到列表中。 如果没有为特定扩展设置的配置选项，则只需省略该扩展的选项：
 
 ```yaml
 markdown_extensions:
@@ -448,25 +342,18 @@ markdown_extensions:
     - sane_lists
 ```
 
-!!! note "See Also:"
-    The Python-Markdown documentation provides a [list of extensions][exts]
-    which are available out-of-the-box. For a list of configuration options
-    available for a given extension, see the documentation for that extension.
+!!! note "延申阅读："
+    Python-Markdown文档提供了[扩展名列表][exts]，它们是开箱即用的。有关给定扩展可用的配置选项列表，请参阅该扩展的文档。
 
-    You may also install and use various [third party extensions][3rd]. Consult
-    the documentation provided by those extensions for installation instructions
-    and available configuration options.
+    您也可以安装和使用各种[第三方扩展][3rd]。 有关安装说明和可用配置选项，请参阅这些扩展提供的文档。
 
-**default**: `[]` (an empty list).
+**默认值**： `[]` (an empty list).
 
 ### plugins
 
-A list of plugins (with optional configuration settings) to use when building
-the site . See the [Plugins] documentation for full details.
+构建站点时要使用的插件列表（带有可选配置设置）。 有关完整详细信息，请参阅[插件]文档。
 
-If the `plugins` config setting is defined in the `mkdocs.yml` config file, then
-any defaults (such as `search`) are ignored and you need to explicitly re-enable
-the defaults if you would like to continue using them:
+如果`plugins`配置设置在`mkdocs.yml`配置文件中定义，则忽略任何默认值（例如`search`），如果要继续使用它们，则需要显式重新启用默认值：
 
 ```yaml
 plugins:
@@ -474,26 +361,21 @@ plugins:
     - your_other_plugin
 ```
 
-To completely disable all plugins, including any defaults, set the `plugins`
-setting to an empty list:
+要完全禁用所有插件，包括任何默认值，请将`plugins`设置为空列表：
 
 ```yaml
 plugins: []
 ```
 
-**default**: `['search']` (the "search" plugin included with MkDocs).
+**默认值**： `['search']` ，MkDocs内置了该'search'插件（“搜索”）.
 
 #### Search
 
-A search plugin is provided by default with MkDocs which uses [lunr.js] as a
-search engine. The following config options are available to alter the behavior
-of the search plugin:
+默认情况下，MkDocs提供了一个搜索插件，它使用[lunr.js]作为搜索引擎。以下配置选项可用于更改搜索插件的行为：
 
 ##### **separator**
 
-A regular expression which matches the characters used as word separators when
-building the index. By default whitespace and the hyphen (`-`) are used. To add
-the dot (`.`) as a word separator you might do this:
+一个正则表达式，它与构建索引时用作单词分隔符的字符相匹配。 默认情况下使用空格和连字符（`-`）。 要将点（`.`）添加为单词分隔符，您可以执行以下操作：
 
 ```yaml
 plugins:
@@ -501,13 +383,11 @@ plugins:
         separator: '[\s\-\.]+'
 ```
 
-  **default**: `'[\s\-]+'`
+  **默认值**： `'[\s\-]+'`
 
 ##### **lang**
 
-A list of languages to use when building the search index as identified by their
-[ISO 639-1] language codes. With [Lunr Languages], the following languages are
-supported:
+构建由[ISO 639-1]语言代码标识的搜索索引时使用的语言列表。 使用[Lunr Languages]，支持以下语言：
 
 * `da`: Danish
 * `du`: Dutch
@@ -527,52 +407,33 @@ supported:
 * `th`: Thai
 * `tr`: Turkish
 
-You may [contribute additional languages].
+您也可以[贡献其他语言]。
 
-!!! Warning
+!!! Warning "警告："
 
-    While search does support using multiple languages together, it is best not
-    to add additional languages unless you really need them. Each additional
-    language adds significant bandwidth requirements and uses more browser
-    resources. Generally it is best to keep each instance of MkDocs to a single
-    language.
+    虽然搜索支持同时使用多种语言，但最好不要添加其他语言，除非您确实需要它们。 每种附加语言都会增加大量带宽需求并使用更多浏览器资源。一般来说，最好将MkDoc的每个实例保持为单一语言。
 
-!!! Note
+!!! Note "注意："
 
-    Lunr Languages does not currently include support for Chinese or other Asian
-    languages. However, some users have reported decent results using Japanese.
+    Lunr Languages目前不包括对中文或其他亚洲语言的支持。 但是，一些用户使用日语报告了不错的结果。
 
-**default**: `['en']`
+**默认值**： `['en']`
 
 ##### **prebuild_index**
 
-Optionally generates a pre-built index of all pages, which provides some
-performance improvements for larger sites. Before enabling, check that the
-theme you are using explicitly supports using a prebuilt index (the builtin
-themes do).
+（可选）生成所有页面的预构建索引，从而为较大的站点提供一些性能改进。在启用之前，请检查您使用的主题是否明确支持使用预建索引（内置主题可以）。
 
-There are two options for prebuilding the index:
+预建索引有两种选择：
 
-Using [Node.js] setting `prebuild_index` to `True` or `node`. This option
-requires that Node.js be installed and the command `node` be on the system
-path. If this feature is enabled and fails for any reason, a warning is issued.
-You may use the `--strict` flag when building to cause such a failure to raise
-an error instead.
+使用[Node.js]将`prebuild_index`设置为`True`或`node`。 此选项要求安装Node.js并且命令`node`在系统路径上。 如果启用此功能并因任何原因失败，则会发出警告。 在构建时可以使用`--strict`标志来导致这样的失败而不是引发错误。
 
-Using [Lunr.py] setting `prebuild_index` to `python`. Lunr.py is installed
-as part of mkdocs and guarantees compatibility with Lunr.js even on languages
-other than english. If you find substantial inconsistencies or problems please
-report it on [Lunr.py's issues] and fall back to the Node.js version.
+使用[Lunr.py]设置`prebuild_index`到`python`。Lunr.py作为mkdocs的一部分安装，并保证与Lunr.js的兼容性，即使在英语以外的语言上也是如此。 如果您发现实质性的不一致或问题，请在[Lunr.py's issues]上报告，然后再回到Node.js版本。
 
-!!! Note
+!!! Note "注意："
 
-    On smaller sites, using a pre-built index is not recommended as it creates a
-    significant increase is bandwidth requirements with little to no noticeable
-    improvement to your users. However, for larger sites (hundreds of pages),
-    the bandwidth increase is relatively small and your users will notice a
-    significant improvement in search performance.
+    在较小的站点上，不建议使用预先构建的索引，因为它会造成带宽显著增加，而对用户几乎没有明显改善。但是，对于较大的站点（数百页），带宽增加相对较小，您的用户会注意到搜索性能的显着提高。
 
-**default**: `False`
+**默认值**： `False`
 
 [custom themes]: custom-themes.md
 [variables that are available]: custom-themes.md#template-variables
