@@ -19,7 +19,7 @@ nav:
         - 编写文档: user-guide/writing-your-docs.md
         - 设置文档样式: user-guide/styling-your-docs.md
         - 配置文件: user-guide/configuration.md
-        - Deploying Your Docs: user-guide/deploying-your-docs.md
+        - 部署文档: user-guide/deploying-your-docs.md
         - Custom Themes: user-guide/custom-themes.md
         - Plugins: user-guide/plugins.md
     - 关于:

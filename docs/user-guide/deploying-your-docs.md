@@ -1,53 +1,34 @@
-# Deploying your docs
+# 部署文档
 
-A basic guide to deploying your docs to various hosting providers
+将文档部署到各种托管服务提供商的基本指南
 
 ---
 
 ## GitHub Pages
 
-If you host the source code for a project on [GitHub], you can easily use
-[GitHub Pages] to host the documentation for your project. There are two basic
-types of GitHub Pages sites: [Project Pages] sites, and [User and Organization
-Pages] sites. They are nearly identical but have some important differences,
-which require a different work flow when deploying.
+如果您在[GitHub]上托管项目的源代码，则可以轻松使用[GitHub Pages]来托管项目的文档。GitHub页面有两种基本类型：[Project Pages]站点和[User and Organization Pages]站点。它们几乎完全相同但有一些重要的区别，在部署时需要不同的工作流程。
 
 ### Project Pages
 
-Project Pages sites are simpler as the site files get deployed to a branch
-within the project repository (`gh-pages` by default). After you `checkout` the
-primary working branch (usually `master`) of the git repository where you
-maintain the source documentation for your project, run the following command:
+项目页面站点更简单，因为站点文件被部署到项目存储库中的分支（默认情况下为“gh-pages”）。 在“checkout”git存储库的主要工作分支（通常是`master`）之后，您可以在其中维护项目的源文档，运行以下命令：
 
 ```sh
 mkdocs gh-deploy
 ```
 
-That's it! Behind the scenes, MkDocs will build your docs and use the
-[ghp-import] tool to commit them to the `gh-pages` branch and push the
-`gh-pages` branch to GitHub.
+就是这么简单就完成了部署！ MkDocs将构建您的文档并使用[ghp-import]工具将它们提交到`gh-pages`分支，然后将`gh-pages`分支推送到GitHub。
 
-Use `mkdocs gh-deploy --help` to get a full list of options available for the
-`gh-deploy` command.
+使用`mkdocs gh-deploy --help`获取可用于`gh-deploy`命令的完整选项列表。
 
-Be aware that you will not be able to review the built site before it is pushed
-to GitHub. Therefore, you may want to verify any changes you make to the docs
-beforehand by using the `build` or `serve` commands and reviewing the built
-files locally.
+请注意，在将其推送到GitHub之前，您将无法查看构建的站点。 因此，您可能希望通过使用`build`或`serve`命令并在本地查看构建的文件来验证您对文档所做的任何更改。
 
-!!! warning
+!!! warning "警告："
 
-    You should never edit files in your pages repository by hand if you're using
-    the `gh-deploy` command because you will lose your work the next time you
-    run the command.
+    如果使用`gh-deploy`命令，则不应手动编辑页面存储库中的文件，因为手动所作的更改在下次运行该命令的时候将丢失。 
 
 ### Organization and User Pages
 
-User and Organization Pages sites are not tied to a specific project, and the
-site files are deployed to the `master` branch in a dedicated repository named
-with the GitHub account name. Therefore, you need working copies of two
-repositories on our local system. For example, consider the following file
-structure:
+User and Organization Pages站点不依赖于特定项目，站点文件部署到以“GitHub”帐户名命名的专用存储库中的“master”分支。 因此，您需要在本地系统上使用两个存储库的工作副本。 例如，请考虑以下文件结构：
 
 ```no-highlight
 my-project/
@@ -56,50 +37,26 @@ my-project/
 orgname.github.io/
 ```
 
-After making and verifying updates to your project you need to change
-directories to the `orgname.github.io` repository and call the
-`mkdocs gh-deploy` command from there:
+在制作并验证项目更新后，您需要将目录更改为`orgname.github.io`存储库并从那里调用`mkdocs gh-deploy`命令：
 
 ```sh
 cd ../orgname.github.io/
 mkdocs gh-deploy --config-file ../my-project/mkdocs.yml --remote-branch master
 ```
 
-Note that you need to explicitly point to the `mkdocs.yml` configuration file as
-it is no longer in the current working directory. You also need to inform the
-deploy script to commit to the `master` branch. You may override the default
-with the [remote_branch] configuration setting, but if you forget to change
-directories before running the deploy script, it will commit to the `master`
-branch of your project, which you probably don't want.
+需要注意的是，您需要显式指向`mkdocs.yml`配置文件，因为它不再位于当前工作目录中。 您还需要通知部署脚本提交到`master`分支。 您可以使用[remote_branch]配置设置覆盖默认值，但是如果您在运行部署脚本之前忘记更改目录，它将提交到可能不是你期望的项目的`master`分支。
 
-Be aware that you will not be able to review the built site before it is pushed
-to GitHub. Therefore, you may want to verify any changes you make to the docs
-beforehand by using the `build` or `serve` commands and reviewing the built
-files locally.
+请注意，在将其推送到GitHub之前，您将无法查看构建的站点。 因此，您可能希望通过使用`build`或`serve`命令并在本地查看构建的文件来验证您对文档所做的任何更改。
 
-!!! warning
+!!! warning "警告："
 
-    You should never edit files in your pages repository by hand if you're using
-    the `gh-deploy` command because you will lose your work the next time you
-    run the command.
+    如果使用`gh-deploy`命令，则不应手动编辑页面存储库中的文件，因为手动所作的更改在下次运行该命令的时候将丢失。 
 
-### Custom Domains
+### 自定义域名
 
-GitHub Pages includes support for using a [Custom Domain] for your site. In
-addition to the steps documented by GitHub, you need to take one additional step
-so that MkDocs will work with your custom domain. You need to add a `CNAME` file
-to the root of your [docs_dir]. The file must contain a single bare domain or
-subdomain on a single line (see MkDocs' own [CNAME file] as an example). You may
-create the file manually, or use GitHub's web interface to set up the custom
-domain (under Settings / Custom Domain). If you use the web interface, GitHub
-will create the `CNAME` file for you and save it to the root of your "pages"
-branch. So that the file does not get removed the next time you deploy, you need
-to copy the file to your `docs_dir`. With the file properly included in your
-`docs_dir`, MkDocs will include the file in your built site and push it to your
-"pages" branch each time you run the `gh-deploy` command.
+GitHub Pages支持为您的站点使用[自定义域名]。除了GitHub记录的步骤之外，您还需要执行一个额外的步骤，以便MkDocs可以与您的自定义域一起使用。您需要将“CNAME”文件添加到[docs_dir]的根目录中。该文件必须在一行中包含一个裸域或子域（请参阅MkDocs自己的[CNAME文件]作为示例）。您可以手动创建文件，或使用GitHub的Web界面设置自定义域（在Settings/Custom Domain下）。如果您使用Web界面，GitHub将为您创建`CNAME`文件并将其保存到“pages”分支的根目录。因此，下次部署时不会删除该文件，您需要将文件复制到`docs_dir`。将文件正确地包含在`docs_dir`中，MkDocs将在您构建的站点中包含该文件，并在每次运行`gh-deploy`命令时将其推送到“pages”分支。
 
-If you are having problems getting a custom domain to work, see GitHub's
-documentation on [Troubleshooting custom domains].
+如果您在使自定义域名时遇到问题，请参阅[Troubleshooting custom domains]的GitHub文档。
 
 [GitHub]: https://github.com/
 [GitHub Pages]: https://pages.github.com/
@@ -114,67 +71,40 @@ documentation on [Troubleshooting custom domains].
 
 ## Read the Docs
 
-[Read the Docs][rtd] offers free documentation hosting. You can import your docs
-using any major version control system, including Mercurial, Git, Subversion,
-and Bazaar. Read the Docs supports MkDocs out-of-the-box. Follow the
-[instructions] on their site to arrange the files in your repository properly,
-create an account and point it at your publicly hosted repository. If properly
-configured, your documentation will update each time you push commits to your
-public repository.
+[Read the Docs][rtd]提供免费文档托管。您可以使用任何主要版本控制系统导入文档，包括Mercurial，Git，Subversion和Bazaar。Read the Docs支持MkDocs开箱即用。 按照其网站上的[说明]正确排列存储库中的文件，创建一个帐户并将其指向您公开托管的存储库。如果配置正确，每次将提交推送到公共存储库时，文档都会更新。
 
-!!! note
+!!! note "注意："
 
-    To benefit from all of the [features] offered by Read the Docs, you will need
-    to use the [Read the Docs theme][theme] which ships with MkDocs. The various
-    themes which may be referenced in Read the Docs' documentation are Sphinx
-    specific themes and will not work with MkDocs.
+    要从Read the Docs提供的所有[功能]中受益，您需要使用MkDocs附带的[Read the Docs主题][theme]。 Read the Docs文档中提到的各种主题是Sphinx特定主题，不适用于MkDocs。
 
 [rtd]: https://readthedocs.org/
 [instructions]: https://read-the-docs.readthedocs.io/en/latest/getting_started.html#in-markdown
-[features]: https://read-the-docs.readthedocs.io/en/latest/features.html
+[功能]: https://read-the-docs.readthedocs.io/en/latest/features.html
 [theme]: ./styling-your-docs.md#readthedocs
 
-## Other Providers
+## 其他提供商
 
-Any hosting provider which can serve static files can be used to serve
-documentation generated by MkDocs. While it would be impossible to document how
-to upload the docs to every hosting provider out there, the following guidelines
-should provide some general assistance.
+任何可以提供静态文件的托管服务的提供商都可以用来部署MkDocs生成的文档。虽然不能一一提供每个服务商的部署方式，但是以下指南可以提供一些一般性的帮助。 
 
-When you build your site (using the `mkdocs build` command), all of the files
-are written to the directory assigned to the [site_dir] configuration option
-(defaults to `"site"`) in your `mkdocs.yaml` config file. Generally, you will
-simply need to copy the contents of that directory to the root directory of your
-hosting provider's server. Depending on your hosting provider's setup, you may
-need to use a graphical or command line [ftp], [ssh] or [scp] client to transfer
-the files.
+当您构建站点时（使用`mkdocs build`命令），所有文件都将写入您的`mkdocs.yaml`配置文件中给[site_dir]选项所设置的目录中（默认为“site”）。 通常，您只需将该目录的内容复制到托管服务提供商服务器的根目录。 根据您的托管服务提供商的设置，您可能需要使用图形或命令行[ftp]，[ssh]或[scp]客户端来传输文件。
 
-For example, a typical set of commands from the command line might look
-something like this:
+例如，命令行中的一组典型命令可能如下所示：
 
 ```sh
 mkdocs build
 scp -r ./site user@host:/path/to/server/root
 ```
 
-Of course, you will need to replace `user` with the username you have with your
-hosting provider and `host` with the appropriate domain name. Additionally, you
-will need to adjust the `/path/to/server/root` to match the configuration of
-your hosts' file system.
+当然，您需要将“user”替换为您的托管服务提供商的用户名，“host”替换为你自己的域名。 此外，您需要调整路径`/path/to/server/root`以匹配主机文件系统的配置。
 
 [ftp]: https://en.wikipedia.org/wiki/File_Transfer_Protocol
 [ssh]: https://en.wikipedia.org/wiki/Secure_Shell
 [scp]: https://en.wikipedia.org/wiki/Secure_copy
 
-See your host's documentation for specifics. You will likely want to search
-their documentation for "ftp" or "uploading site".
+有关详细信息，请参阅相应服务商的说明文档。 您可能希望在其文档中搜索“ftp”或“上传站点(uploading site)”。
 
-## 404 Pages
+## 404页面
 
-When MkDocs builds the documentation it will include a 404.html file in the
-[build directory][site_dir]. This file will be automatically used when
-deploying to [GitHub](#github-pages) but only on a custom domain. Other web
-servers may be configured to use it but the feature won't always be available.
-See the documentation for your server of choice for more information.
+当MkDocs构建文档时，它将在[构建目录][site_dir]中包含一个404.html文件。 部署到[GitHub](#github-pages)时，将自动使用此文件，但仅限于自定义域名。其他Web服务器可以配置使用它，但该功能并不总是可用。 有关详细信息，请参阅所选Web服务器的文档。
 
 [site_dir]: ./configuration.md#site_dir
