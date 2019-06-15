@@ -1,69 +1,50 @@
-# Contributing to MkDocs
+# 为MkDocs做贡献
 
-An introduction to contributing to the MkDocs project.
+为MkDocs项目做出贡献的介绍。
 
-The MkDocs project welcomes, and depends, on contributions from developers and
-users in the open source community. Contributions can be made in a number of
-ways, a few examples are:
+MkDocs项目欢迎并依赖于开源社区中开发人员和用户的贡献。 贡献可以通过多种方式进行，例如：
 
-- Code patches via pull requests
-- Documentation improvements
-- Bug reports and patch reviews
+- 提交代码补丁
+- 改进文档
+- 错误报告和补丁评论
 
-## Code of Conduct
+## 行为准则
 
-Everyone interacting in the MkDocs project's codebases, issue trackers, chat
-rooms, and mailing lists is expected to follow the [PyPA Code of Conduct].
+在MkDocs项目的代码库，问题跟踪器，聊天室和邮件列表中进行交互的每个人都应遵循[PyPA行为准则]。
 
-## Reporting an Issue
+## 报告问题
 
-Please include as much detail as you can. Let us know your platform and MkDocs
-version. If the problem is visual (for example a theme or design issue) please
-add a screenshot and if you get an error please include the full error and
-traceback.
+请尽可能详细地提供详细信息。 让我们知道您的平台和MkDocs版本。如果问题是可视的（例如主题或设计问题），请添加屏幕截图，如果出现错误，请包含完整错误和追溯。
 
-## Testing the Development Version
+## 测试开发版本
 
-If you want to just install and try out the latest development version of
-MkDocs you can do so with the following command. This can be useful if you
-want to provide feedback for a new feature or want to confirm if a bug you
-have encountered is fixed in the git master. It is **strongly** recommended
-that you do this within a [virtualenv].
+如果您只想安装并试用MkDocs的最新开发版本，可以使用以下命令执行此操作。如果您想为新功能提供反馈或想要确认您遇到的错误是否已在git主服务器中修复，则此功能非常有用。 强烈建议您在[virtualenv]中执行此操作。
 
 ```bash
 pip install https://github.com/mkdocs/mkdocs/archive/master.tar.gz
 ```
 
-## Installing for Development
+## 安装开发
 
-First you'll need to fork and clone the repository. Once you have a local
-copy, run the following command. It is **strongly** recommended that you do
-this within a [virtualenv].
+首先，您需要fork并克隆存储库。 获得本地副本后，请运行以下命令。 强烈建议您在[virtualenv]中执行此操作。
 
 ```bash
 pip install --editable .
 ```
 
-This will install MkDocs in development mode which binds the `mkdocs` command
-to the git repository.
+这将在开发模式下安装MkDocs，它将`mkdocs`命令绑定到git存储库。
 
-## Running the tests
+## 运行测试
 
-To run the tests, it is recommended that you use [tox].
+要运行测试，建议您使用[tox]。
 
-Install Tox using [pip] by running the command `pip install tox`.
-Then the test suite can be run for MkDocs by running the command `tox` in the
-root of your MkDocs repository.
+通过运行命令`pip install tox`使用[pip]安装Tox。 然后，可以通过在MkDocs存储库的根目录中运行命令`tox`来为MkDocs运行测试套件。
 
-It will attempt to run the tests against all of the Python versions we
-support. So don't be concerned if you are missing some and they fail. The rest
-will be verified by [Travis] when you submit a pull request.
+它将尝试针对我们支持的所有Python版本运行测试。 所以不要担心，如果你错过了一些，他们会失败。 当您提交pull request时，[Travis]将验证其余部分。
 
-## Submitting Pull Requests
+## 提交Pull Requests
 
-Once you are happy with your changes or you are ready for some feedback, push
-it to your fork and send a pull request. For a change to be accepted it will
-most likely need to have tests and documentation if it is a new feature.
+一旦您对更改感到满意，或者您已准备好提供反馈，请将其推送到您的分支并发送拉取请求。要接受更改，如果它是新功能，则很可能需要测试和文档。
 
 [virtualenv]: https://virtualenv.pypa.io/en/latest/userguide.html
 [pip]: https://pip.pypa.io/en/stable/

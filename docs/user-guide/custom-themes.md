@@ -1,29 +1,18 @@
-# Custom themes
+# 自定义主题
 
-A guide to creating and distributing custom themes.
+创建和分发自定义主题的指南。
 
 ---
 
-!!! Note
+!!! Note "注意："
 
-    If you are looking for third party themes, they are listed in the MkDocs
-    [community wiki](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes). If
-    you want to share a theme you create, you should list it on the Wiki.
+    如果你只是寻找第三方主题，请转到MkDocs在GitHub上的[wiki页面](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)。如果你想共享自己的创作的主题，也可以在该页面上提交。
 
-When creating a new theme, you can either follow the steps in this guide to
-create one from scratch or you can download the `mkdocs-basic-theme` as a
-basic, yet complete, theme with all the boilerplate required. **You can find
-this base theme on [GitHub](https://github.com/mkdocs/mkdocs-basic-theme)**.
-It contains detailed comments in the code to describe the different features
-and their usage.
+创建新主题时，您可以按照本指南中的步骤从头开始创建一个，也可以下载`mkdocs-basic-theme`，在此基础开始创作。该主题是一个基本的，但是包含了一个主题所必须的所有文件。 **您可以在[GitHub](https://github.com/mkdocs/mkdocs-basic-theme)**上找到此基本主题。它包含代码中的详细注释，用于描述不同的功能及其用法。
 
-## Creating a custom theme
+## 创建自定义主题
 
-The bare minimum required for a custom theme is a `main.html` [Jinja2 template]
-file which is placed in a directory that is *not* a child of the [docs_dir].
-Within `mkdocs.yml`, set the theme.[custom_dir] option to the path of the
-directory containing `main.html`. The path should be relative to the
-configuration file. For example, given this example project layout:
+自定义主题至少包含一个`main.html`[Jinja2 template]文件，要求该文件存放于一个*不是*[docs_dir]子目录的目录中。 在`mkdocs.yml`中，将[theme.custom_dir]选项设置为包含`main.html`的目录的路径。 路径应该相对于配置文件。 例如，给定此示例项目布局：
 
 ```no-highlight
 mkdocs.yml
@@ -35,8 +24,7 @@ custom_theme/
     ...
 ```
 
-... you would include the following settings in `mkdocs.yml` to use the custom theme
-directory:
+您将在`mkdocs.yml`中包含以下设置以使用自定义主题目录：
 
 ```yaml
 theme:
@@ -44,28 +32,20 @@ theme:
     custom_dir: 'custom_theme/'
 ```
 
-!!! Note
+!!! Note "注意："
 
-    Generally, when building your own custom theme, the theme.[name]
-    configuration setting would be set to `null`. However, if the
-    theme.[custom_dir] configuration value is used in combination with an
-    existing theme, the theme.[custom_dir] can be used to replace only specific
-    parts of a built-in theme. For example, with the above layout and if you set
-    `name: "mkdocs"` then the `main.html` file in the theme.[custom_dir] would
-    replace the file of the same name in the `mkdocs` theme but otherwise the
-    `mkdocs` theme would remain unchanged. This is useful if you want to make
-    small adjustments to an existing theme.
+    通常，在构建自己的自定义主题时，[theme.name]配置设置将设置为`null`。 但是，如果theme.[custom_dir]配置值与现有主题结合使用，则theme.[custom_dir]可用于仅替换内置主题的特定部分。 例如，使用上面的布局，如果你设置`name："mkdocs"`那么主题中的`main.html`文件。[custom_dir]将替换`mkdocs`主题中的同名文件，否则 `mkdocs`主题将保持不变。如果要对现有主题进行小幅调整，这将非常有用。
 
-    For more specific information, see [styling your docs].
+    有关更具体的信息，请参阅[样式化您的文档]。
 
-[styling your docs]: ./styling-your-docs.md#using-the-theme-custom_dir
-[custom_dir]: ./configuration.md#custom_dir
-[name]: ./configuration.md#name
+[样式化您的文档]: ./styling-your-docs.md#using-the-theme-custom_dir
+[theme.custom_dir]: ./configuration.md#custom_dir
+[theme.name]: ./configuration.md#name
 [docs_dir]:./configuration.md#docs_dir
 
-## Basic theme
+## 基本主题
 
-The simplest `main.html` file is the following:
+最简单的`main.html`文件如下：
 
 ```django
 <!DOCTYPE html>
@@ -79,48 +59,28 @@ The simplest `main.html` file is the following:
 </html>
 ```
 
-The body content from each page specified in `mkdocs.yml` is inserted using the
-`{{ page.content }}` tag. Style-sheets and scripts can be brought into this
-theme as with a normal HTML file. Navbars and tables of contents can also be
-generated and included automatically, through the `nav` and `toc` objects,
-respectively. If you wish to write your own theme, it is recommended to start
-with one of the [built-in themes] and modify it accordingly.
+使用`{{page.content}}`标签指代每个页面的正文内容。 样式表和脚本可以像普通HTML文件一样进入此主题。 导航栏和目录也可以分别通过`nav`和`toc`对象自动生成和包含。 如果您希望编写自己的主题，建议您从[内置主题]之一开始，并相应地进行修改。
 
-!!! Note
+!!! Note "注意："
 
-    As MkDocs uses [Jinja] as its template engine, you have access to all the
-    power of Jinja, including [template inheritance]. You may notice that the
-    themes included with MkDocs make extensive use of template inheritance and
-    blocks, allowing users to easily override small bits and pieces of the
-    templates from the theme [custom_dir]. Therefore, the built-in themes are
-    implemented in a `base.html` file, which `main.html` extends. Although not
-    required, third party template authors are encouraged to follow a similar
-    pattern and may want to define the same [blocks] as are used in the built-in
-    themes for consistency.
+    由于MkDocs使用[Jinja]作为其模板引擎，因此您可以访问Jinja的所有功能，包括[模板继承]。您可能会注意到MkDocs中包含的主题广泛使用模板继承和块，允许用户轻松地从主题[custom_dir]覆盖模板的一小部分。 因此，内置主题在`base.html`文件中实现，`main.html`扩展。虽然不是必需的，但鼓励第三方模板作者遵循类似的模式，并且可能希望定义与内置主题中使用的相同[块]以保持一致性。
 
 [Jinja]: http://jinja.pocoo.org/
-[template inheritance]: http://jinja.pocoo.org/docs/dev/templates/#template-inheritance
+[模板继承]: http://jinja.pocoo.org/docs/dev/templates/#template-inheritance
 [theme_dir]: ./styling-your-docs.md#using-the-theme_dir
 [blocks]: ./styling-your-docs.md#overriding-template-blocks
 
-## Template Variables
+## 模板变量
 
-Each template in a theme is built with a template context. These are the
-variables that are available to themes. The context varies depending on the
-template that is being built. At the moment templates are either built with
-the global context or with a page specific context. The global context is used
-for HTML pages that don't represent an individual Markdown document, for
-example a 404.html page or search.html.
+主题中的每个模板都使用模板上下文构建。 这些是主题可用的变量。 上下文取决于正在构建的模板。目前，模板是使用全局上下文或特定于页面的上下文构建的。全局上下文用于不代表单个Markdown文档的HTML页面，例如404.html页面或search.html。
 
-### Global Context
+### 全局上下文
 
-The following variables are available globally on any template.
+以下变量可在任何模板上全局使用。
 
 #### config
 
-The `config` variable is an instance of MkDocs' config object generated from the
-`mkdocs.yml` config file. While you can use any config option, some commonly
-used options include:
+`config`变量是从`mkdocs.yml`配置文件生成的MkDocs配置对象的实例。 虽然您可以使用任何配置选项，但一些常用选项包括：
 
 * [config.site_name](./configuration.md#site_name)
 * [config.site_url](./configuration.md#site_url)
@@ -135,31 +95,23 @@ used options include:
 
 #### nav
 
-The `nav` variable is used to create the navigation for the documentation. The
-`nav` object is an iterable of [navigation objects](#navigation-objects) as
-defined by the [nav] configuration setting.
+`nav`变量用于创建文档的导航。 `nav`对象是由[nav]配置设置定义的[导航对象](#navigation-objects)的可迭代对象。
 
 [nav]: configuration.md#nav
 
-In addition to the iterable of [navigation objects](#navigation-objects), the
-`nav` object contains the following attributes:
+除了[navigation objects](#navigation-objects)的可迭代之外，`nav`对象还包含以下属性：
 
 ##### nav.homepage
 
-The [page](#page) object for the homepage of the site.
+网站主页的[页面](#page)对象。
 
 ##### nav.pages
 
-A flat list of all [page](#page) objects contained in the navigation. This list
-is not necessarily a complete list of all site pages as it does not contain
-pages which are not included in the navigation. This list does match the list
-and order of pages used for all "next page" and "previous page" links. For a
-list of all pages, use the [pages](#pages) template variable.
+导航中包含的所有[页面](#page)对象的平面列表。此列表不一定是所有网站页面的完整列表，因为它不包含导航中未包含的页面。此列表与用于所有“下一页”和“上一页”链接的页面列表和顺序相匹配。有关所有页面的列表，请使用[pages](#page)模板变量。
 
-##### Nav Example
+##### Nav变量示例
 
-Following is a basic usage example which outputs the first and second level
-navigation as a nested list.
+以下是将第一级和第二级导航输出为嵌套列表的基本用法示例。
 
 ```django
 {% if nav|length>1 %}
@@ -187,59 +139,44 @@ navigation as a nested list.
 
 #### base_url
 
-The `base_url` provides a relative path to the root of the MkDocs project. While
-this can be used directly by prepending it to a local relative URL, it is best
-to use the [url](#url) template filter, which is smarter about how it applies
-`base_url`.
+`base_url`提供了MkDocs项目根目录的相对路径。虽然可以通过将其预先添加到本地相对URL来直接使用它，但最好使用[url](#url)模板过滤器，它更灵活地应用`base_url`。
 
 #### mkdocs_version
 
-Contains the current MkDocs version.
+包含当前的MkDocs版本。
 
 #### build_date_utc
 
-A Python datetime object that represents the date and time the documentation
-was built in UTC. This is useful for showing how recently the documentation
-was updated.
+一个Python日期时间对象，表示以UTC格式构建文档的日期和时间。 这对于显示文档最近的更新非常有用。
 
 #### pages
 
-A list of [page](#page) objects including *all* pages in the project. The list
-is a flat list with all pages sorted alphanumerically by directory and file
-name. Note that index pages sort to the top within a directory. This list can
-contain pages not included in the global [navigation](#nav) and may not match
-the order of pages within that navigation.
+包含项目中*所有*页面的[page](#page)对象列表。该列表是一个平面列表，所有页面按字母顺序按目录和文件名排序。请注意，索引页面排在目录中的顶部。 此列表可以包含未包含在全局[导航](#nav)中的页面，并且可能与该导航中的页面顺序不匹配。
 
 #### page
 
-In templates which are not rendered from a Markdown source file, the `page`
-variable is `None`. In templates which are rendered from a Markdown source file,
-the `page` variable contains a `page` object. The same `page` objects are used
-as `page` [navigation objects](#navigation-objects) in the global
-[navigation](#nav) and in the [pages](#pages) template variable.
+在未从Markdown源文件呈现的模板中，`page`变量为`None`。 在从Markdown源文件呈现的模板中，`page`变量包含`page`对象。 相同的`page`对象在全局[navigation](#nav)和[pages](#pages)模板变量中用作`page` [导航对象](＃navigation-objects)。
 
-All `page` objects contain the following attributes:
+所有`page`对象都包含以下属性：
 
 ##### page.title
 
-Contains the Title for the current page.
+包含当前页面的标题。
 
 ##### page.content
 
-The rendered Markdown as HTML, this is the contents of the documentation.
+呈现Markdown为HTML，这是文档的内容。
 
 ##### page.toc
 
-An iterable object representing the Table of contents for a page. Each item in
-the `toc` is an `AnchorLink` which contains the following attributes:
+一个可迭代的对象，表示页面的目录。 `toc`中的每个项目都是`AnchorLink`，它包含以下属性：
 
-* `AnchorLink.title`: The text of the item.
-* `AnchorLink.url`: The hash fragment of a URL pointing to the item.
-* `AnchorLink.level`: The zero-based level of the item.
-* `AnchorLink.children`: An iterable of any child items.
+* `AnchorLink.title`: 该项目的文本。
+* `AnchorLink.url`: 指向该项的URL中的以#开头的片段。
+* `AnchorLink.level`: 项目的从零开始的级别。
+* `AnchorLink.children`: 任何子项的可迭代。
 
-The following example would display the top two levels of the Table of Contents
-for a page.
+以下示例将显示页面的目录的前两个级别。
 
 ```django
 <ul>
@@ -254,8 +191,7 @@ for a page.
 
 ##### page.meta
 
-A mapping of the metadata included at the top of the markdown page. In this
-example we define a `source` property above the page title.
+包含在markdown页面顶部的元数据的映射。 在这个例子中，我们在页面标题上面定义了一个`source`属性。
 
 ```no-highlight
 source: generics.py
@@ -266,9 +202,7 @@ source: generics.py
 Content...
 ```
 
-A template can access this metadata for the page with the `meta.source`
-variable. This could then be used to link to source files related to the
-documentation page.
+模板可以使用`meta.source`变量访问页面的元数据。 然后，可以使用它链接到与文档页面相关的源文件。
 
 ```django
 {% for filename in page.meta.source %}
@@ -280,9 +214,7 @@ documentation page.
 
 ##### page.url
 
-The URL of the page relative to the MkDocs `site_dir`. It is expected that this
-be used with the [url](#url) filter to ensure the URL is relative to the current
-page.
+页面的URL相对于MkDocs`site_dir`。 预计这将与[url](#url)过滤器一起使用，以确保URL相对于当前页面。
 
 ```django
 <a href="{{ page.url|url }}">{{ page.title }}</a>
@@ -292,37 +224,23 @@ page.
 
 ##### page.abs_url
 
-The absolute URL of the page from the server root as determined by the value
-assigned to the [site_url] configuration setting. The value includes any
-subdirectory included in the `site_url`, but not the domain. [base_url] should
-not be used with this variable.
+来自服务器根目录的页面的绝对URL，由分配给[site_url]配置设置的值确定。 该值包括`site_url`中包含的任何子目录，但不包括域。 [base_url]不应与此变量一起使用。
 
-For example, if `site_url: https://example.com/`, then the value of
-`page.abs_url` for the page `foo.md` would be `/foo/`. However, if
-`site_url: https://example.com/bar/`, then the value of `page.abs_url` for the
-page `foo.md` would be `/bar/foo/`.
+例如，如果`site_url：https：//example.com/`，那么页面`foo.md`的`page.abs_url`的值将是`/foo/`。但是，如果`site_url：https：//example.com/bar/`，那么页面`foo.md`的`page.abs_url`的值将是`/bar/foo/`。
 
 [site_url]: ./configuration.md#site_url
 
 ##### page.canonical_url
 
-The full, canonical URL to the current page as determined by the value assigned
-to the [site_url] configuration setting. The value includes the domain and any
-subdirectory included in the `site_url`. [base_url] should not be used with this
-variable.
+通过分配给[site_url]配置设置的值确定的当前页面的完整，规范URL。 该值包括域和“site_url”中包含的任何子目录。 [base_url]不应与此变量一起使用。
 
 ##### page.edit_url
 
-The full URL to the source page in the source repository. Typically used to
-provide a link to edit the source page. [base_url] should not be used with this
-variable.
+源存储库中源页面的完整URL。 通常用于提供编辑源页面的链接。 [base_url]不应与此变量一起使用。
 
 ##### page.is_homepage
 
-Evaluates to `True` for the homepage of the site and `False` for all other
-pages. This can be used in conjunction with other attributes of the `page`
-object to alter the behavior. For example, to display a different title
-on the homepage:
+对网站的主页评估为`True`，对所有其他页面评估为`False`。 这可以与`page`对象的其他属性一起使用来改变行为。 例如，要在主页上显示不同的标题：
 
 ```django
 {% if not page.is_homepage %}{{ page.title }} - {% endif %}{{ site_name }}
@@ -330,153 +248,117 @@ on the homepage:
 
 ##### page.previous_page
 
-The page object for the previous page or `None`. The value will be `None` if the
-current page is the first item in the site navigation or if the current page is
-not included in the navigation at all. When the value is a page object, the
-usage is the same as for `page`.
+上一页的页面对象或“无”。如果当前页面是站点导航中的第一项，或者当前页面根本不包含在导航中，则该值将为“无”。 当值是页面对象时，用法与“page”的用法相同。
 
 ##### page.next_page
 
-The page object for the next page or `None`. The value will be `None` if the
-current page is the last item in the site navigation or if the current page is
-not included in the navigation at all. When the value is a page object, the
-usage is the same as for `page`.
+下一页的页面对象或“无”。如果当前页面是站点导航中的最后一项，或者当前页面根本不包含在导航中，则该值将为“无”。 当值是页面对象时，用法与“page”的用法相同。
 
 ##### page.parent
 
-The immediate parent of the page in the [site navigation](#nav). `None` if the
-page is at the top level.
+[网站导航](#nav)中页面的直接父级。 如果页面位于顶层，则为`None`。
 
 ##### page.children
 
-Pages do not contain children and the attribute is always `None`.
+页面不包含子项，属性始终为`None`。
 
 ##### page.active
 
-When `True`, indicates that this page is the currently viewed page. Defaults
-to `False`.
+当`True`时，表示该页面是当前查看的页面。 默认为`False`。
 
 ##### page.is_section
 
-Indicates that the navigation object is a "section" object. Always `False` for
-page objects.
+表示导航对象是“section”对象。 页面对象始终为`False`。
 
 ##### page.is_page
 
-Indicates that the navigation object is a "page" object. Always `True` for
-page objects.
+表示导航对象是“页面”对象。 页面对象始终为`True`。
 
 ##### page.is_link
 
-Indicates that the navigation object is a "link" object. Always `False` for
-page objects.
+表示导航对象是“链接”对象。 页面对象始终为`False`。
 
-### Navigation Objects
+### 导航对象
 
-Navigation objects contained in the [nav](#nav) template variable may be one of
-[section](#section) objects, [page](#page) objects, and [link](#link) objects.
-While section objects may contain nested navigation objects, pages and links do
-not.
+[nav](#nav)模板变量中包含的导航对象可以是[section](#section)对象，[page](#page)对象和[link](#link)对象之一。 虽然节点对象可能包含嵌套的导航对象，但页面和链接却不包含。
 
-Page objects are the full page object as used for the current [page](#page) with
-all of the same attributes available. Section and Link objects contain a subset
-of those attributes as defined below:
+页面对象是用于当前[页面]（＃页面）的完整页面对象，具有所有可用的相同属性。Section和Link对象包含以下定义的那些属性的子集：
 
 #### Section
 
-A `section` navigation object defines a named section in the navigation and
-contains a list of child navigation objects. Note that sections do not contain
-URLs and are not links of any kind. However, by default, MkDocs sorts index
-pages to the top and the first child might be used as the URL for a section if a
-theme choses to do so.
+`section`导航对象在导航中定义命名部分，并包含子导航对象的列表。请注意，这些部分不包含URL，也不是任何类型的链接。但是，默认情况下，如果主题选择这样做，MkDocs会将索引页面排序到顶部，并且第一个子节点可能会用作节点的URL。
 
- The following attributes are available on `section` objects:
+`section`对象提供以下属性：
 
 ##### section.title
 
-The title of the section.
+节点的标题。
 
 ##### section.parent
 
-The immediate parent of the section or `None` if the section is at the top
-level.
+如果该节点位于顶层，则该节点的直接父级或`None`。
 
 ##### section.children
 
-An iterable of all child navigation objects. Children may include nested
-sections, pages and links.
+所有子导航对象的可迭代。 子级可能包括嵌套的部分，页面和链接。
 
 ##### section.active
 
-When `True`, indicates that a child page of this section is the current page and
-can be used to highlight the section as the currently viewed section. Defaults
-to `False`.
+当`True`时，表示此节点的子页面是当前页面，可用于将该部分突出显示为当前查看的节点。 默认为`False`。
 
 ##### section.is_section
 
-Indicates that the navigation object is a "section" object. Always `True` for
-section objects.
+表示导航对象是"节点"对象。 节点对象始终为`True`。
 
 ##### section.is_page
 
-Indicates that the navigation object is a "page" object. Always `False` for
-section objects.
+表示导航对象是“页面”对象。 对于节点对象，始终为`False`。
 
 ##### section.is_link
 
-Indicates that the navigation object is a "link" object. Always `False` for
-section objects.
+表示导航对象是“链接”对象。 对于节点对象，始终为`False`。
 
 #### Link
 
-A `link` navigation object contains a link which does not point to an internal
-MkDocs page. The following attributes are available on `link` objects:
+`link`导航对象包含一个不指向内部MkDocs页面的链接。 `link`对象提供以下属性：
 
 ##### link.title
 
-The title of the link. This would generally be used as the label of the link.
+链接的标题。 这通常用作链接的标签。
 
 ##### link.url
 
-The URL that the link points to. The URL should always be an absolute URLs and
-should not need to have `base_url` prepened.
+链接指向的URL。 URL应该始终是绝对URL，并且不需要预先设置`base_url`。
 
 ##### link.parent
 
-The immediate parent of the link. `None` if the link is at the top level.
+链接的直接父级。 如果链接位于顶层，则为`None`。
 
 ##### link.children
 
-Links do not contain children and the attribute is always `None`.
+链接不包含子项，属性始终为`None`。
 
 ##### link.active
 
-External links cannot be "active" and the attribute is always `False`.
+外部链接不能“活动”，属性始终为`False`。
 
 ##### link.is_section
 
-Indicates that the navigation object is a "section" object. Always `False` for
-link objects.
+表示导航对象是“section”对象。 链接对象始终为`False`。
 
 ##### link.is_page
 
-Indicates that the navigation object is a "page" object. Always `False` for
-link objects.
+表示导航对象是“页面”对象。 链接对象始终为`False`。
 
 ##### link.is_link
 
-Indicates that the navigation object is a "link" object. Always `True` for
-link objects.
+表示导航对象是“链接”对象。 链接对象始终为`True`。
 
-### Extra Context
+### 额外的上下文
 
-Additional variables can be passed to the template with the
-[`extra`](/user-guide/configuration.md#extra) configuration option. This is a
-set of key value pairs that can make custom templates far more flexible.
+可以使用[`extra`](/user-guide/configuration.md＃extra)配置选项将其他变量传递给模板。 这是一组键值对，可以使自定义模板更加灵活。
 
-For example, this could be used to include the project version of all pages
-and a list of links related to the project. This can be achieved with the
-following `extra` configuration:
+例如，这可以用于包括所有页面的项目版本以及与项目相关的链接列表。 这可以通过以下`extra`配置来实现：
 
 ```yaml
 extra:
@@ -487,7 +369,7 @@ extra:
         - https://www.mkdocs.org/
 ```
 
-And then displayed with this HTML in the custom theme.
+然后在自定义主题中显示此HTML。
 
 ```django
 {{ config.extra.version }}
@@ -501,17 +383,13 @@ And then displayed with this HTML in the custom theme.
 {% endif %}
 ```
 
-## Template Filters
+## 模板过滤器
 
-In addition to Jinja's default filters, the following custom filters are
-available to use in MkDocs templates:
+除了Jinja的默认过滤器之外，还可以在MkDocs模板中使用以下自定义过滤器：
 
 ### url
 
-Normalizes a URL. Absolute URLs are passed through unaltered. If the URL is
-relative and the template context includes a page object, then the URL is
-returned relative to the page object. Otherwise, the URL is returned with
-[base_url](#base_url) prepended.
+规范化URL。 绝对URL通过不变的方式传递。如果URL是相对的并且模板上下文包括页面对象，则相对于页面对象返回URL。否则，返回的URL前缀为[base_url](#base_url)。
 
 ```django
 <a href="{{ page.url|url }}">{{ page.title }}</a>
@@ -520,6 +398,7 @@ returned relative to the page object. Otherwise, the URL is returned with
 ### tojson
 
 Safety convert a Python object to a value in a JavaScript script.
+用于JavaScript中，安全地转换python对象的值。
 
 ```django
 <script>
@@ -527,15 +406,11 @@ Safety convert a Python object to a value in a JavaScript script.
 </script>
 ```
 
-## Search and themes
+## 主题中的搜索
 
-As of MkDocs version *0.17* client side search support has been added to MkDocs
-via the `search` plugin. A theme needs to provide a few things for the plugin to
-work with the theme.
+截至MkDocs版本* 0.17 *客户端搜索支持已通过`search`插件添加到MkDocs。主题需要为插件提供一些与主题一起使用的东西。
 
-While the `search` plugin is activated by default, users can disable the plugin
-and themes should account for this. It is recommended that theme templates wrap
-search specific markup with a check for the plugin:
+虽然默认情况下会激活`search`插件，但用户可以禁用该插件，主题应该考虑到这一点。建议主题模板使用对插件的检查来包装搜索特定标记：
 
 ```django
 {% if 'search' in config['plugins'] %}
@@ -543,22 +418,15 @@ search specific markup with a check for the plugin:
 {% endif %}
 ```
 
-At its most basic functionality, the search plugin will simply provide an index
-file which is no more than a JSON file containing the content of all pages.
-The theme would need to implement its own search functionality client-side.
-However, with a few settings and the necessary templates, the plugin can provide
-a complete functioning client-side search tool based on [lunr.js].
+在其最基本的功能上，搜索插件将只提供一个索引文件，该文件不过是包含所有页面内容的JSON文件。 主题需要在客户端实现自己的搜索功能。 但是，通过一些设置和必要的模板，插件可以提供基于[lunr.js]的完整功能的客户端搜索工具。
 
-The following HTML needs to be added to the theme so that the provided
-JavaScript is able to properly load the search scripts and make relative links
-to the search results from the current page.
+需要将以下HTML添加到主题中，以便提供的JavaScript能够正确加载搜索脚本并从当前页面进行搜索结果的相对链接。
 
 ```django
 <script>var base_url = '{{ base_url }}';</script>
 ```
 
-With properly configured settings, the following HTML in a template  will add a
-full search implementation to your theme.
+使用正确配置的设置，模板中的以下HTML将为您的主题添加完整的搜索实现。
 
 ```django
 <h1 id="search">Search Results</h1>
@@ -572,44 +440,27 @@ full search implementation to your theme.
 </div>
 ```
 
-The JavaScript in the plugin works by looking for the specific ID's used in the
-above HTML. The form input for the user to type the search query must be
-identified with `id="mkdocs-search-query"` and the div where the results will be
-placed must be identified with `id="mkdocs-search-results"`.
+插件中的JavaScript通过查找上述HTML中使用的特定ID来工作。 用户键入搜索查询的表单输入必须使用`id =“mkdocs-search-query”来标识，并且必须使用`id =“mkdocs-search-results”来识别将放置结果的div。
 
-The plugin supports the following options being set in the [theme's
-configuration file], `mkdocs_theme.yml`:
+该插件支持在[theme的配置文件]`mkdocs_theme.yml`中设置以下选项：
 
 ### include_search_page
 
-Determines whether the search plugin expects the theme to provide a dedicated
-search page via a template located at `search/search.html`.
+确定搜索插件是否期望主题通过位于`search / search.html`的模板提供专用搜索页面。
 
-When `include_search_page` is set to `true`, the search template will be built
-and available at `search/search.html`. This method is used by the `readthedocs`
-theme.
+当`include_search_page`设置为`true`时，搜索模板将在`search / search.html`上构建并可用。 这个方法被`readthedocs`主题使用。
 
-When `include_search_page` is set to `false` or not defined, it is expected that
-the theme provide some other mechanisms for displaying search results. For
-example, the `mkdocs` theme displays results on any page via a modal.
+当`include_search_page`设置为`false`或未定义时，预期主题提供一些其他显示搜索结果的机制。 例如，`mkdocs`主题通过模态在任何页面上显示结果。
 
 ### search_index_only
 
-Determines whether the search plugin should only generate a search index or a
-complete search solution.
+确定搜索插件是仅生成搜索索引还是生成完整的搜索解决方案。
 
-When `search_index_only` is set to `false`, then the search plugin modifies the
-Jinja environment by adding its own `templates` directory (with a lower
-precedence than the theme) and adds its scripts to the `extra_javascript` config
-setting.
+当`search_index_only`设置为`false`时，搜索插件通过添加自己的`templates`目录（优先级低于主题）来修改Jinja环境，并将其脚本添加到`extra_javascript`配置设置中。
 
-When `search_index_only` is set to `true` or not defined, the search plugin
-makes no modifications to the Jinja environment. A complete solution using the
-provided index file is the responsibility of the theme.
+当`search_index_only`设置为`true`或未定义时，搜索插件不会对Jinja环境进行任何修改。使用提供的索引文件的完整解决方案是主题的责任。
 
-The search index is written to a JSON file at `search/search_index.json` in the
-[site_dir]. The JSON object contained within the file may contain up to three
-objects.
+搜索索引将写入[site_dir]中的`search / search_index.json`JSON文件。该文件中包含的JSON对象最多可包含三个对象。
 
 ```json
 {
@@ -619,19 +470,11 @@ objects.
 }
 ```
 
-If present, the `config` object contains the key/value pairs of config options
-defined for the plugin in the user's `mkdocs.yml` config file under
-`plugings.search`. The `config` object was new in MkDocs version *1.0*.
+如果存在，`config`对象包含在`plugings.search`下用户的`mkdocs.yml`配置文件中为插件定义的配置选项的键/值对。 `config`对象是MkDocs版本* 1.0 *中的新对象。
 
-The `data` object contains a list of document objects. Each document object is
-made up of a `location` (URL), a `title`, and `text` which can be used to create
-a search index and/or display search results.
+`data`对象包含文档对象列表。 每个文档对象由“位置”（URL），“标题”和“文本”组成，可用于创建搜索索引和/或显示搜索结果。
 
-If present, the `index` object contains a pre-built index which offers
-performance improvements for larger sites. Note that the pre-built index is only
-created if the user explicitly enables the [prebuild_index] config option.
-Themes should expect the index to not be present, but can choose to use the
-index when it is available. The `index` object was new in MkDocs version *1.0*.
+如果存在，`index`对象包含一个预构建的索引，它为较大的站点提供性能改进。 请注意，仅当用户明确启用[prebuild_index]配置选项时，才会创建预构建索引。 主题应该期望索引不存在，但可以选择在可用时使用索引。 `index`对象是MkDocs版本* 1.0 *中的新对象。
 
 [Jinja2 template]: http://jinja.pocoo.org/docs/dev/
 [built-in themes]: https://github.com/mkdocs/mkdocs/tree/master/mkdocs/themes
@@ -640,35 +483,23 @@ index when it is available. The `index` object was new in MkDocs version *1.0*.
 [site_dir]: configuration.md#site_dir
 [prebuild_index]: configuration.md#prebuild_index
 
-## Packaging Themes
+## 打包主题
 
-MkDocs makes use of [Python packaging] to distribute themes. This comes with a
-few requirements.
+MkDocs利用[Python packaging]来分发主题。 这有一些要求。
 
-To see an example of a package containing one theme, see the [MkDocs Bootstrap
-theme] and to see a package that contains many themes, see the [MkDocs
-Bootswatch theme].
+要查看包含一个主题的包的示例，请参阅[MkDocs Bootstrap主题];查看包含许多主题的包，请参阅[MkDocs Bootswatch主题]。
 
-!!! Note
+!!! Note "注意："
 
-    It is not strictly necessary to package a theme, as the entire theme
-    can be contained in the `custom_dir`. If you have created a "one-off theme,"
-    that should be sufficient. However, if you intend to distribute your theme
-    for others to use, packaging the theme has some advantages. By packaging
-    your theme, your users can more easily install it and they can then take
-    advantage of the [custom_dir] to make tweaks to your theme to better suit
-    their needs.
+    打包主题并不是绝对必要的，因为整个主题可以包含在`custom_dir`中。如果你创造了一个“一次性主题”，那就足够了。 但是，如果您打算将主题分发给其他人使用，则打包主题具有一些优势。通过打包您的主题，您的用户可以更轻松地安装它，然后他们可以利用[custom_dir]对您的主题进行调整，以更好地满足他们的需求。
 
 [Python packaging]: https://packaging.python.org/en/latest/
-[MkDocs Bootstrap theme]: https://mkdocs.github.io/mkdocs-bootstrap/
-[MkDocs Bootswatch theme]: https://mkdocs.github.io/mkdocs-bootswatch/
+[MkDocs Bootstrap主题]: https://mkdocs.github.io/mkdocs-bootstrap/
+[MkDocs Bootswatch主题]: https://mkdocs.github.io/mkdocs-bootswatch/
 
-### Package Layout
+### 包布局
 
-The following layout is recommended for themes. Two files at the top level
-directory called `MANIFEST.in` and `setup.py` beside the theme directory which
-contains an empty `__init__.py` file, a theme configuration file
-(`mkdocs-theme.yml`), and your template and media files.
+建议主题使用以下布局。 顶级目录中的两个文件名为`MANIFEST.in`和主题目录旁边的`setup.py`，其中包含一个空的`__init __。py`文件，一个主题配置文件（`mkdocs-theme.yml`），以及模板和媒体文件。
 
 ```no-highlight
 .
@@ -681,8 +512,7 @@ contains an empty `__init__.py` file, a theme configuration file
 `-- setup.py
 ```
 
-The `MANIFEST.in` file should contain the following contents but with
-theme_name updated and any extra file extensions added to the include.
+`MANIFEST.in`文件应包含以下内容，但更新了theme_name，并在include中添加了任何额外的文件扩展名。
 
 ```no-highlight
 recursive-include theme_name *.ico *.js *.css *.png *.html *.eot *.svg *.ttf *.woff
@@ -690,8 +520,7 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 ```
 
-The `setup.py` should include the following text with the modifications
-described below.
+`setup.py`应该包含以下文本以及下面描述的修改。
 
 ```python
 from setuptools import setup, find_packages
@@ -718,42 +547,25 @@ setup(
 )
 ```
 
-Fill in the URL, license, description, author and author email address.
+填写URL，许可证，说明，作者和作者电子邮件地址。
 
-The name should follow the convention `mkdocs-themename` (like `mkdocs-
-bootstrap` and `mkdocs-bootswatch`), starting with MkDocs, using hyphens to
-separate words and including the name of your theme.
+该名称应遵循惯例`mkdocs-themename`（如`mkdocs-bootstrap`和`mkdocs-bootswatch`），从MkDocs开始，使用连字符分隔单词并包括主题名称。
 
-Most of the rest of the file can be left unedited. The last section we need to
-change is the entry_points. This is how MkDocs finds the theme(s) you are
-including in the package. The name on the left is the one that users will use
-in their mkdocs.yml and the one on the right is the directory containing your
-theme files.
+该文件的大部分内容可以未经编辑。 我们需要更改的最后一部分是entry_points。 这就是MkDocs如何找到您在包中包含的主题。左侧的名称是用户将在其mkdocs.yml中使用的名称，右侧的名称是包含主题文件的目录。
 
-The directory you created at the start of this section with the main.html file
-should contain all of the other theme files. The minimum requirement is that
-it includes a `main.html` for the theme. It **must** also include a
-`__init__.py` file which should be empty, this file tells Python that the
-directory is a package.
+您在本节开头使用main.html文件创建的目录应包含所有其他主题文件。 最低要求是它包含主题的“main.html”。 它**必须**还包括一个应该为空的`__init __。py`文件，这个文件告诉Python该目录是一个包。
 
-### Theme Configuration
+### 主题配置
 
-A packaged theme is required to include a configuration file named
-`mkdocs_theme.yml` which is placed in the root of your template files. The file
-should contain default configuration options for the theme. However, if the
-theme offers no configuration options, the file is still required and can be
-left blank.
+打包的主题需要包含名为`mkdocs_theme.yml`的配置文件，该文件放在模板文件的根目录中。该文件应包含主题的默认配置选项。 但是，如果主题不提供配置选项，则仍需要该文件，并且可以留空。
 
-The theme author is free to define any arbitrary options deemed necessary and
-those options will be made available in the templates to control behavior.
-For example, a theme might want to make a sidebar optional and include the
-following in the `mkdocs_theme.yml` file:
+主题作者可以自由定义任何认为必要的任意选项，并且这些选项将在模板中提供以控制行为。例如，主题可能希望侧边栏可选，并在`mkdocs_theme.yml`文件中包含以下内容：
 
 ```yaml
 show_sidebar: true
 ```
 
-Then in a template, that config option could be referenced:
+然后在模板中，可以引用该配置选项：
 
 ```django
 {% if config.theme.show_sidebar %}
@@ -761,8 +573,7 @@ Then in a template, that config option could be referenced:
 {% endif %}
 ```
 
-And the user could override the default in their project's `mkdocs.yml` config
-file:
+用户可以覆盖项目的`mkdocs.yml`配置文件中的默认值：
 
 ```yaml
 theme:
@@ -770,44 +581,33 @@ theme:
     show_sidebar: false
 ```
 
-In addition to arbitrary options defined by the theme, MkDocs defines a few
-special options which alters its behavior:
+除了主题定义的任意选项外，MkDoc还定义了一些改变其行为的特殊选项：
 
 !!! block ""
 
     #### static_templates
 
-    This option mirrors the [theme] config option of the same name and allows
-    some defaults to be set by the theme. Note that while the user can add
-    templates to this list, the user cannot remove templates included in the
-    theme's config.
+    此选项镜像同名的[theme]配置选项，并允许主题设置一些默认值。 请注意，虽然用户可以向此列表添加模板，但用户无法删除主题配置中包含的模板。
 
     #### extends
 
-    Defines a parent theme that this theme inherits from. The value should be
-    the string name of the parent theme. Normal Jinja inheritance rules apply.
+    定义此主题继承的父主题。 该值应该是父主题的字符串名称。 正常的Jinja继承规则适用。
 
-Plugins may also define some options which allow the theme to inform a plugin
-about which set of plugin options it expects. See the documentation for any
-plugins you may wish to support in your theme.
+插件还可以定义一些选项，允许主题通知插件它期望的插件选项集。 请参阅文档，了解您可能希望在主题中支持的任何插件。
 
-### Distributing Themes
+### 分发主题
 
-With the above changes, your theme should now be ready to install. This can be
-done with pip, using `pip install .` if you are still in the same directory as
-the setup.py.
+通过上述更改，您的主题现在应该可以安装了。 如果你仍然和setup.py在同一目录下，可以使用pip install。来完成这个。
 
-Most Python packages, including MkDocs, are distributed on PyPI. To do this,
-you should run the following command.
+大多数Python包，包括MkDocs，都是在PyPI上发布的。 为此，您应该运行以下命令。
 
 ```no-highlight
 python setup.py register
 ```
 
-If you don't have an account setup, you should be prompted to create one.
+如果您没有设置帐户，系统会提示您创建帐户。
 
-For a much more detailed guide, see the official Python packaging
-documentation for [Packaging and Distributing Projects].
+有关更详细的指南，请参阅[打包和分发项目]的官方Python打包文档。
 
 [Packaging and Distributing Projects]: https://packaging.python.org/en/latest/distributing/
 [theme]: ./configuration.md#theme

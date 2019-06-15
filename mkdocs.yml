@@ -20,12 +20,12 @@ nav:
         - 设置文档样式: user-guide/styling-your-docs.md
         - 配置文件: user-guide/configuration.md
         - 部署文档: user-guide/deploying-your-docs.md
-        - Custom Themes: user-guide/custom-themes.md
-        - Plugins: user-guide/plugins.md
+        - 自定义主题: user-guide/custom-themes.md
+        - 插件: user-guide/plugins.md
     - 关于:
-        - Release Notes: about/release-notes.md
-        - Contributing: about/contributing.md
-        - License: about/license.md
+        - 发行说明: about/release-notes.md
+        - 贡献: about/contributing.md
+        - 许可: about/license.md
 
 extra_css:
     - css/extra.css

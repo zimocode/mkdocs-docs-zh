@@ -1,18 +1,18 @@
-# License
+# 许可
 
-The legal stuff.
+法律相关的东西。
 
 ---
 
-## Included projects
+## 包含的项目
 
-Themes used under license from the ReadTheDocs projects.
+主题使用了ReadTheDocs项目。
 
-* ReadTheDocs theme - [View license](https://github.com/snide/sphinx_rtd_theme/blob/master/LICENSE).
+* ReadTheDocs主题 - [View license](https://github.com/snide/sphinx_rtd_theme/blob/master/LICENSE).
 
-Many thanks to the authors and contributors of those wonderful projects.
+非常感谢这些伟大项目的作者和贡献者。
 
-## MkDocs License (BSD)
+## MkDocs许可证（BSD）
 
 Copyright © 2014, Tom Christie. All rights reserved.
 

@@ -1,27 +1,27 @@
-# Release Notes
+# 发行说明
 
 ---
 
-## Upgrading
+## 升级
 
-To upgrade MkDocs to the latest version, use pip:
+要将MkDocs升级到最新版本，请使用pip：
 
     pip install -U mkdocs
 
-You can determine your currently installed version using `mkdocs --version`:
+您可以使用`mkdocs --version`确定当前安装的版本：
 
     $ mkdocs --version
     mkdocs, version 1.0 from /path/to/mkdocs (Python 3.6)
 
-## Maintenance team
+## 维护团队
 
-The current and past members of the MkDocs team.
+MkDocs团队的现任成员和过去成员。
 
 * [@tomchristie](https://github.com/tomchristie/)
 * [@d0ugal](https://github.com/d0ugal/)
 * [@waylan](https://github.com/waylan/)
 
-## Version 1.1 (*in development*)
+## Version 1.1 (*开发中*)
 
 ### Major Additions to Version 1.1
 
@@ -45,7 +45,7 @@ documentation][rtd-docs] for details.
 [upstream]: https://github.com/rtfd/sphinx_rtd_theme/
 [rtd-docs]: ../user-guide/styling-your-docs.md#readthedocs
 
-## Update `mkdocs` theme to bootswatch 4.1.3 (#1563)
+### Update `mkdocs` theme to bootswatch 4.1.3 (#1563)
 
 The `mkdocs` theme now supports all the features of [Bootswatch 4.1]. Note that
 the [dropdowns] used in the navigation only support one level of nesting. If
